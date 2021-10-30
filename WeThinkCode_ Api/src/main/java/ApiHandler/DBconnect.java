@@ -1,0 +1,130 @@
+package ApiHandler;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
+import io.javalin.http.Context;
+import org.json.JSONObject;
+
+import java.sql.*;
+
+public class DBconnect {
+    private Connection connect = null;
+    private Statement statement = null;
+    private PreparedStatement preparedStatement = null;
+    private ResultSet resultSet = null;
+
+
+    public Connection connection() throws SQLException {
+        return DriverManager
+                .getConnection("jdbc:mysql://localhost/tickets?"
+                        + "user=kali&password=root");
+    }
+
+
+    public ResultSet readDataBase(
+    ) throws Exception {
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.jdbc.Driver");
+            // Setup the connection with the DB
+            connect = connection();
+
+            // Statements allow to issue SQL queries to the database
+            statement = connect.createStatement();
+            // Result set get the result of the SQL query
+            return statement
+                    .executeQuery("select * from tickets");
+//
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+//            close();
+        }
+
+    }
+
+    private void close() {
+        try {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+
+            if (statement != null) {
+                statement.close();
+            }
+
+            if (connect != null) {
+                connect.close();
+            }
+        } catch (Exception e) {
+
+        }
+    }
+    public void writeDatabase(Ticket ticket) throws SQLException {
+        Connection connection = connection();
+        // INSERT INTO comments values (default, 'lars', 'myemail@gmail.com','https://www.vogella.com/', '2009-09-14 10:33:11', 'Summary','My first comment' );
+
+        statement = connection.createStatement();
+        System.out.println("insert into tickets values (default,"+ticket.getTicketOwner()+","
+                +ticket.getCampus()+ ","+
+                ticket.getIssue()+ ","+
+//                ticket.getIssue()+ ","+
+                ticket.completed(false)+")");
+        statement.executeUpdate("insert into tickets(username,campus,issue,completed) values ("
+                + "\"" + ticket.getTicketOwner()+"\","
+                + "\"" + ticket.getCampus()+ "\","
+                + "\"" + ticket.getIssue()+ "\","
+                + "\"" + ticket.completed(false)+"\")");
+        connection.close();
+    }
+
+    public void resetCounter(int id, Context context) throws SQLException {
+        Connection connection = connection();
+        // INSERT INTO comments values (default, 'lars', 'myemail@gmail.com','https://www.vogella.com/', '2009-09-14 10:33:11', 'Summary','My first comment' );
+        JSONObject query = new JSONObject(context.body());
+
+        statement = connection.createStatement();
+        if (query.get("password").equals("beresponsibleWithApis@2015")) {
+            statement.executeUpdate("delete from tickets");
+            statement.executeUpdate("alter table tickets auto_increment = " + id);
+            connection.close();
+            context.json("Deleted Data and Reset Table");
+        }
+        else {
+            context.json("Password Incorrect");
+        }
+    }
+
+    public void createTables() throws SQLException {
+
+        Connection connection = connection();
+
+        statement = connection.createStatement();
+        statement.executeUpdate("create table tickets (id INT NOT NULL AUTO_INCREMENT," +
+                "username VARCHAR(30) NOT NULL," +
+                "campus VARCHAR(30) NOT NULL," +
+                "issue VARCHAR(80) NOT NULL," +
+                "completed VARCHAR(5),"+
+                "primary key(id))"
+        );
+
+        connection.close();
+    }
+
+    public void dropTables() throws SQLException {
+        Connection connection = connection();
+        // INSERT INTO comments values (default, 'lars', 'myemail@gmail.com','https://www.vogella.com/', '2009-09-14 10:33:11', 'Summary','My first comment' );
+
+        statement = connection.createStatement();
+        try {
+            statement.executeUpdate("drop table tickets");
+        }catch (MySQLSyntaxErrorException e) {
+            if(e.toString().contains("Unknown table")){
+                createTables();
+            }
+            else {
+                createTables();
+            }
+        }
+        connection.close();
+    }
+}
