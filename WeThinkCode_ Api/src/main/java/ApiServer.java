@@ -1,7 +1,7 @@
 import ApiHandler.DBconnect;
 import ApiHandler.Ticket;
 import ApiHandler.TicketInterface;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
+import com.mysql.jdbc;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import org.json.JSONObject;

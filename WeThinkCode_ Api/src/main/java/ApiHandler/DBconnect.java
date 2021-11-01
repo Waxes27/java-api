@@ -1,5 +1,6 @@
 package ApiHandler;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
+//import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
+import com.mysql.jdbc.*;
 import io.javalin.http.Context;
 import org.json.JSONObject;
 
@@ -117,10 +118,10 @@ public class DBconnect {
         statement = connection.createStatement();
         try {
             statement.executeUpdate("drop table tickets");
-        }catch (MySQLSyntaxErrorException e) {
+        }catch (MySQLSyntaxE e) {
             if(e.toString().contains("Unknown table")){
                 createTables();
-            }
+            }//MySQLSyntaxErrorException
             else {
                 createTables();
             }
