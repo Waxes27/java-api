@@ -1,13 +1,9 @@
 import ApiHandler.DBconnect;
 import ApiHandler.Ticket;
 import ApiHandler.TicketInterface;
-
-//import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
-
-import java.sql.SQLException;
+import com.mysql.jdbc;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-import com.mysql.cj.jdbc.Driver;
 import org.json.JSONObject;
 
 import java.sql.SQLException;
@@ -50,7 +46,7 @@ public class ApiServer {
         Ticket ticket = new Ticket();
         try {
             ticket.dropTable();
-        }catch (Exception e){
+        }catch (MySQLSyntaxErrorException e){
             if(e.toString().contains("Unknown table")){
                 ticket.dropTable();
             };

@@ -12,7 +12,7 @@ public class Ticket implements TicketInterface{
 
     private String campus;
     private String issue;
-    private Completed complete;
+    private boolean complete;
     private String ticketOwner;
     private int id;
 
@@ -112,7 +112,7 @@ public class Ticket implements TicketInterface{
         newTicket.setTicketOwner(ticket.get("author").toString());
 //        newTicket.setTicketId(1);
         newTicket.setIssue(ticket.get("issue").toString());
-        newTicket.completed(Completed.INCOMPLETE);
+        newTicket.completed(false);
 
 
 
@@ -122,9 +122,9 @@ public class Ticket implements TicketInterface{
     }
 
     @Override
-    public Completed completed(Completed complete) {
+    public boolean completed(boolean complete) {
         this.complete = complete;
-        return ;
+        return complete;
     }
 
     @Override

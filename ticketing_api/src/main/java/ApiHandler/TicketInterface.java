@@ -34,7 +34,7 @@ public interface TicketInterface {
 
      Ticket setAll(String ticket, Context context) throws Exception;
 
-     Completed completed(Completed complete);
+     boolean completed(boolean complete);
 
      void reset(int id,Context context) throws SQLException;
 
