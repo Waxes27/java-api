@@ -5,61 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="078a4be2-c14b-4e4c-a696-029efcd51923" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Client/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/.idea/Client.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/TRWorld.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Client/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Client/ConfigVariables.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Client/LaunchJSON.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Client/WriteJSON.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Client/handleJSON.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Config.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Position.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Request/Request.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Response/Response.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Response/State.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/RobotNames.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/BackCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/CommandError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/FireCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/ForwardCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/LaunchCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/LookCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/MineCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/ParseCommandError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/ReloadCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/RepairCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/StateCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Commands/TurnCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/ConfigVariables.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/JsonReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/NewWorld.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/ProcessRequests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/RobotGlobals.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/Server.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/Server/WorldUpdate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/world/AbstractWorld.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/world/CreateObstacle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/world/IWorld.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/world/Obstacle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/world/PitObstacle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/za/co/wethinkcode/world/SquareObstacle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/resources/settings.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/test/java/MyTestClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/test/java/SimpleTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/trworld.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/main/java/za/co/wethinkcode/Server/Api/ApiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/main/java/za/co/wethinkcode/Server/Api/ApiHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeThinkCode_ Api.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ApiHandler/DBconnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiHandler/DBconnect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ApiHandler/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiHandler/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ApiHandler/TicketInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiHandler/TicketInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ApiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +20,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -97,8 +47,10 @@
   </component>
   <component name="RunManager">
     <configuration name="ApiServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-16" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="ApiServer" />
-      <module name="WeThinkCode_ Api" />
+      <module name="wethinkcode_api" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

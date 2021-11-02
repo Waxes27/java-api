@@ -124,7 +124,7 @@ public class Ticket implements TicketInterface{
     @Override
     public Completed completed(Completed complete) {
         this.complete = complete;
-        return ;
+        return complete;
     }
 
     @Override

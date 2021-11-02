@@ -71,12 +71,12 @@ public class DBconnect {
                 +ticket.getCampus()+ ","+
                 ticket.getIssue()+ ","+
 //                ticket.getIssue()+ ","+
-                ticket.completed(false)+")");
+                ticket.completed(Completed.INCOMPLETE)+")");
         statement.executeUpdate("insert into tickets(username,campus,issue,completed) values ("
                 + "\"" + ticket.getTicketOwner()+"\","
                 + "\"" + ticket.getCampus()+ "\","
                 + "\"" + ticket.getIssue()+ "\","
-                + "\"" + ticket.completed(false)+"\")");
+                + "\"" + ticket.completed(Completed.INCOMPLETE)+"\")");
         connection.close();
     }
 
@@ -106,9 +106,10 @@ public class DBconnect {
                 "username VARCHAR(30) NOT NULL," +
                 "campus VARCHAR(30) NOT NULL," +
                 "issue VARCHAR(80) NOT NULL," +
-                "completed VARCHAR(5),"+
+                "completed VARCHAR(15),"+
                 "primary key(id))"
         );
+
 
         connection.close();
     }
@@ -121,13 +122,9 @@ public class DBconnect {
         try {
             statement.executeUpdate("drop table tickets");
         }catch (Exception e) {
-            if(e.toString().contains("Unknown table")){
-                createTables();
-            }//MySQLSyntaxErrorException
-            else {
-                createTables();
-            }
+            createTables();
         }
+        createTables();
         connection.close();
     }
 }
