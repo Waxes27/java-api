@@ -1,12 +1,15 @@
 package ApiHandler;
 //import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
-import com.mysql.jdbc.*;
-import com.mysql.cj.jdbc.Driver;
 
 import io.javalin.http.Context;
 import org.json.JSONObject;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.sql.DriverManager;
 
 public class DBconnect {
     private Connection connect = null;

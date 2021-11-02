@@ -29,14 +29,13 @@ class HomePageState extends State<HomePage> {
     }));
   }
 
-Future<http.Response> createIssue(String title) {
-  return http.post(
-    Uri.parse('http://localhost:4444/tickets'),
-    headers: <String, String>{
-      'Content-Type': 'application/json',
-    },
+Future<http.Response> createIssue() async {
+  
+  return await http.post(Uri.parse('http://localhost:4444/tickets'),
     body: jsonEncode(<String, String>{
-      'title': title,
+      "author" : usernameIn,
+      "issue" : issueIn,
+      "campus" : "JHB",
     }),
   );
 }
@@ -88,7 +87,9 @@ Future<http.Response> createIssue(String title) {
                     contentPadding: EdgeInsets.all(24.0)),
                 onSubmitted: (text) {
                   issueIn = text;
+                  createIssue();
                   _goToThankYou();
+
                 },
               ),
             )));

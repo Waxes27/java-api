@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="078a4be2-c14b-4e4c-a696-029efcd51923" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_xerial_sqlite_jdbc_3_36_0_3.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ApiHandler/DBconnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiHandler/DBconnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ApiHandler/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiHandler/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wethinkcode_api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wethinkcode_api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tickets/lib/homepage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../tickets/lib/homepage.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
