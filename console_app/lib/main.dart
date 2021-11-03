@@ -24,7 +24,7 @@ class ConsoleAppState extends State<ConsoleApp> {
     futureTickets = fetchTickets();
   }
 
-  SingleChildScrollView dataTable(tickets) {
+  SingleChildScrollView dataTable(ticket) {
     return SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: DataTable(
@@ -68,11 +68,56 @@ class ConsoleAppState extends State<ConsoleApp> {
                   numeric: true,
                   onSort: (i, b) {}),
             ],
-            rows: _buildrows(tickets)));
+            rows: [DataRow(cells: [
+              DataCell(Text(ticket.getID.toString())),
+              DataCell(Text(ticket.getUsername())),
+              DataCell(Text(ticket.getCampus())),
+              DataCell(Text(ticket.getProblem())),
+              DataCell(
+                Text(ticket.isCompleted().toString().replaceAll("Status.", "")),
+              ),
+              DataCell(TextButton(
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.blue),
+                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.hovered))
+                          return Colors.blue.withOpacity(0.04);
+                        if (states.contains(MaterialState.focused) ||
+                            states.contains(MaterialState.pressed))
+                          return Colors.blue.withOpacity(0.12);
+                        return null; // Defer to the widget's default.
+                      },
+                    ),
+                  ),
+                  onPressed: () => {
+                        if (ticket.isCompleted() == Status.Incomplete)
+                          {
+                            //////
+                          }
+                        else if (ticket.isCompleted() == Status.Pending)
+                          {
+                            //////
+                          }
+                      },
+                  child: Text('Change State')))
+              // DataCell(
+              //   FloatingActionButton(
+              // onPressed: () => {
+              //   if (ticket.isCompleted() == Status.Incomplete)
+              //     {ticket.PENDING()}
+              //   else if (ticket.isCompleted() == Status.Pending)
+              //     {ticket.COMPLETE()}
+              // },
+              //   ),
+              // ),
+            ])]
+        ,));
   }
 
   List<DataRow> _buildrows(tickets) {
-    // print(tickets.getID());
+    print(tickets.getID());
 
     return tickets
         .map((ticket) => DataRow(cells: [
@@ -192,10 +237,11 @@ class ConsoleAppState extends State<ConsoleApp> {
   Future<ticketModel> fetchTickets() async {
     final response = await http.get(Uri.parse(uri));
     
-    List jsonOb = json.decode(response.body);
     // print("hello");
 
     if (response.statusCode == 200) {
+      List jsonOb = json.decode(response.body);
+      for
       print("NEW JSON OBJECT: ${jsonOb[0]}");
       
       // If the server did return a 200 OK response,

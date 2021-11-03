@@ -2,6 +2,12 @@ import 'package:flutter/cupertino.dart';
 
 enum Status { Completed, Pending, Incomplete }
 
+  Status stuff(String status){
+    dynamic states = {"incomplete":Status.Incomplete};
+    return states[status];
+  }
+
+  
 class ticketModel extends ChangeNotifier {
   var userName;
   var problem;
@@ -10,6 +16,7 @@ class ticketModel extends ChangeNotifier {
   var campus;
   var status;
   List<ticketModel> tickets = [];
+
 
   ticketModel(
       {this.id,
@@ -26,7 +33,7 @@ class ticketModel extends ChangeNotifier {
         problem: json["issue"],
         // date: json["date"],
         campus: json["campus"],
-        status: json["completed"]);
+        status: stuff(json['completed'].toLowerCase()));
     return newTicket;
   }
 
