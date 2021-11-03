@@ -86,7 +86,6 @@ public class Ticket implements TicketInterface{
         System.out.println("Storing Ticket"+ticket+" with ID:"+ticket.getTicketId());
 
         DBconnect connection = new DBconnect();
-        ;
         connection.writeDatabase(ticket);
     }
 

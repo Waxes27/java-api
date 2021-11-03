@@ -1,17 +1,10 @@
-import ApiHandler.DBconnect;
 import ApiHandler.Ticket;
-import ApiHandler.TicketInterface;
-
 //import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 
 import java.sql.SQLException;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-import com.mysql.cj.jdbc.Driver;
-import org.json.JSONObject;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 

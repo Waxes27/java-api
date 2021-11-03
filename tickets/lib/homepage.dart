@@ -15,7 +15,6 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
 
-
   void _goToIssues() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
@@ -29,16 +28,45 @@ class HomePageState extends State<HomePage> {
     }));
   }
 
-Future<http.Response> createIssue() async {
-  
-  return await http.post(Uri.parse('http://localhost:4444/tickets'),
-    body: jsonEncode(<String, String>{
-      "author" : usernameIn,
-      "issue" : issueIn,
-      "campus" : "JHB",
-    }),
-  );
-}
+  void _goToFloor(){
+    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+    return _floor(context);
+    }));
+  }
+
+
+  Future<http.Response> createIssue() async {
+    return await http.post(Uri.parse('http://localhost:4444/tickets'),
+      body: jsonEncode(<String, String>{
+        "author" : usernameIn,
+        "issue" : issueIn,
+        "campus" : "JHB",
+      }),
+    );
+  }
+
+
+  Widget _floor(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: _bar(context),
+      ),
+      body: Container(
+            padding: const EdgeInsets.all(50.0),
+            child: Center(
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: "What is your floor number? (e.g. 4)",
+                  contentPadding: EdgeInsets.all(24.0)),
+                onSubmitted: (text) {
+                  usernameIn = text;
+                  _goToThankYou();
+                  createIssue();
+                },
+              ),
+            ))
+    );
+  }
 
 
   Widget _bar(BuildContext context) {
@@ -51,12 +79,22 @@ Future<http.Response> createIssue() async {
 
   Widget _thankYou(BuildContext context){
     return Scaffold(
+      backgroundColor: Colors.blue,
       appBar: AppBar(title: _bar(context)),
       body: const Center(
-        child: Text("Your ticket has been lodged... Give it about 1 Hour to reach resolution"),
+        child: Text(
+          "Your ticket has been lodged... Give it about 1 Hour to reach resolution",
+          style: TextStyle(
+                  fontSize: 24,
+                  fontFamily: "aria",
+                  
+                  ),
+          ),
         ),
     );
   }
+
+
   Widget _homePageBody(BuildContext context) {
     return Scaffold(
         body: Container(
@@ -67,6 +105,8 @@ Future<http.Response> createIssue() async {
                     hintText: "Enter Username",
                     contentPadding: EdgeInsets.all(24.0)),
                 onSubmitted: (text) {
+                  String qwer = '[{"campus":"JHB"},{"campus":"CPT"}]';
+                  print(json.decode(qwer)[0]);
                   usernameIn = text;
                   _goToIssues();
                 },
@@ -74,7 +114,7 @@ Future<http.Response> createIssue() async {
             )));
             
   }
-
+  
   Widget _issueHomePage(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: _bar(context),),
@@ -87,9 +127,9 @@ Future<http.Response> createIssue() async {
                     contentPadding: EdgeInsets.all(24.0)),
                 onSubmitted: (text) {
                   issueIn = text;
-                  createIssue();
-                  _goToThankYou();
-
+                  // createIssue();
+                  // _goToThankYou();
+                  _goToFloor();
                 },
               ),
             )));
@@ -99,6 +139,7 @@ Future<http.Response> createIssue() async {
     return Scaffold(
       appBar: AppBar(title: _bar(context)),
       body: _homePageBody(context),
+      
     );
   }
 }

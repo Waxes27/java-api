@@ -5,12 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="078a4be2-c14b-4e4c-a696-029efcd51923" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_xerial_sqlite_jdbc_3_36_0_3.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ApiHandler/DBconnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiHandler/DBconnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wethinkcode_api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wethinkcode_api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ApiHandler/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiHandler/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ApiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ticketing_api/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ticketing_api/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ticketing_api/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ticketing_api/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ticketing_api/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ticketing_api/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ticketing_api/src/main/java/ApiHandler/DBconnect.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ticketing_api/src/main/java/ApiHandler/Ticket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ticketing_api/src/main/java/ApiHandler/TicketInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ticketing_api/src/main/java/ApiServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ticketing_api/ticketing_api.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../tickets/lib/homepage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../tickets/lib/homepage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tickets/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../tickets/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tickets/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../tickets/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tickets/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../tickets/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
