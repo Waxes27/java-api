@@ -6,7 +6,7 @@ class ticketModel extends ChangeNotifier {
   var userName;
   var problem;
   var id;
-  var date;
+  // var date;
   var campus;
   var status;
   List<ticketModel> tickets = [];
@@ -15,18 +15,18 @@ class ticketModel extends ChangeNotifier {
       {this.id,
       this.userName,
       this.problem,
-      this.date,
+      // this.date,
       this.campus,
       this.status});
 
   factory ticketModel.fromJson(json) {
     var newTicket = ticketModel(
-        id: json["id"],
-        userName: json["userName"],
+        id: int.parse(json["id"]),
+        userName: json["username"],
         problem: json["issue"],
-        date: json["date"],
+        // date: json["date"],
         campus: json["campus"],
-        status: json["status"]);
+        status: json["completed"]);
     return newTicket;
   }
 
@@ -35,7 +35,7 @@ class ticketModel extends ChangeNotifier {
   String getProblem() => this.problem;
   int getID() => this.id;
   Status isCompleted() => this.status;
-  DateTime getCreationDate() => this.date;
+  // DateTime getCreationDate() => this.date;
 
   void completeTicket() => this.status = Status.Completed;
   void startTicket() => this.status = Status.Pending;

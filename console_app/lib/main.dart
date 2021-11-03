@@ -1,5 +1,3 @@
-// import 'dart:html';
-
 import 'package:app_tut/ticketModel.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -10,7 +8,6 @@ var mockData = ticketModel();
 final uri = "http://localhost:4444/tickets";
 
 void main(List<String> args) => runApp(ConsoleApp());
-
 class ConsoleApp extends StatefulWidget {
   @override
   ConsoleAppState createState() {
@@ -75,9 +72,11 @@ class ConsoleAppState extends State<ConsoleApp> {
   }
 
   List<DataRow> _buildrows(tickets) {
+    // print(tickets.getID());
+
     return tickets
         .map((ticket) => DataRow(cells: [
-              DataCell(Text(ticket.getID().toString())),
+              DataCell(Text(ticket.getID.toString())),
               DataCell(Text(ticket.getUsername())),
               DataCell(Text(ticket.getCampus())),
               DataCell(Text(ticket.getProblem())),
@@ -172,6 +171,7 @@ class ConsoleAppState extends State<ConsoleApp> {
                       if (!snapshot.hasData) {
                         Center(child: CircularProgressIndicator());
                       } else if (snapshot.hasData) {
+                        
                         return Column(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -191,14 +191,16 @@ class ConsoleAppState extends State<ConsoleApp> {
 
   Future<ticketModel> fetchTickets() async {
     final response = await http.get(Uri.parse(uri));
-    print(response.statusCode);
-    print(response.body.substring(0, response.body.length));
-    print(response.body.isEmpty);
+    
+    List jsonOb = json.decode(response.body);
+    // print("hello");
+
     if (response.statusCode == 200) {
-      print(response.body);
+      print("NEW JSON OBJECT: ${jsonOb[0]}");
+      
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      return ticketModel.fromJson(jsonDecode(response.body));
+      return ticketModel.fromJson(jsonOb[0]);
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
