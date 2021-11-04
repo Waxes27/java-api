@@ -7,7 +7,7 @@ enum Status { Completed, Pending, Incomplete }
     return states[status];
   }
 
-  
+
 class ticketModel extends ChangeNotifier {
   var userName;
   var problem;
@@ -47,7 +47,7 @@ class ticketModel extends ChangeNotifier {
   void completeTicket() => this.status = Status.Completed;
   void startTicket() => this.status = Status.Pending;
 
-  void addTicket(ticket) {
+  void addTicket(ticketModel ticket) {
     this.tickets.add(ticket);
     notifyListeners();
   }
@@ -60,6 +60,7 @@ class ticketModel extends ChangeNotifier {
       notifyListeners();
     }
 
+  }
     void dropAll() {
       this.tickets.clear();
       notifyListeners();
@@ -78,5 +79,4 @@ class ticketModel extends ChangeNotifier {
     List<ticketModel> getTickets() {
       return this.tickets;
     }
-  }
 }

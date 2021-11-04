@@ -4,8 +4,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 // L mockData = ticketModel();
-var mockData = ticketModel();
+final data = ticketModel();
 final uri = "http://localhost:4444/tickets";
+// var qwer = ticketModel();
 
 void main(List<String> args) => runApp(ConsoleApp());
 class ConsoleApp extends StatefulWidget {
@@ -13,18 +14,19 @@ class ConsoleApp extends StatefulWidget {
   ConsoleAppState createState() {
     return ConsoleAppState();
   }
+  
 }
 
 class ConsoleAppState extends State<ConsoleApp> {
-  late Future<ticketModel> futureTickets;
+  // late Future<ticketModel> futureTickets;
 
   @override
   void initState() {
     super.initState();
-    futureTickets = fetchTickets();
   }
+    // fetchTickets();
 
-  SingleChildScrollView dataTable(ticket) {
+  SingleChildScrollView dataTable(List<ticketModel> tickets) {
     return SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: DataTable(
@@ -68,60 +70,20 @@ class ConsoleAppState extends State<ConsoleApp> {
                   numeric: true,
                   onSort: (i, b) {}),
             ],
-            rows: [DataRow(cells: [
-              DataCell(Text(ticket.getID.toString())),
-              DataCell(Text(ticket.getUsername())),
-              DataCell(Text(ticket.getCampus())),
-              DataCell(Text(ticket.getProblem())),
-              DataCell(
-                Text(ticket.isCompleted().toString().replaceAll("Status.", "")),
-              ),
-              DataCell(TextButton(
-                  style: ButtonStyle(
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blue),
-                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                      (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.hovered))
-                          return Colors.blue.withOpacity(0.04);
-                        if (states.contains(MaterialState.focused) ||
-                            states.contains(MaterialState.pressed))
-                          return Colors.blue.withOpacity(0.12);
-                        return null; // Defer to the widget's default.
-                      },
-                    ),
-                  ),
-                  onPressed: () => {
-                        if (ticket.isCompleted() == Status.Incomplete)
-                          {
-                            //////
-                          }
-                        else if (ticket.isCompleted() == Status.Pending)
-                          {
-                            //////
-                          }
-                      },
-                  child: Text('Change State')))
-              // DataCell(
-              //   FloatingActionButton(
-              // onPressed: () => {
-              //   if (ticket.isCompleted() == Status.Incomplete)
-              //     {ticket.PENDING()}
-              //   else if (ticket.isCompleted() == Status.Pending)
-              //     {ticket.COMPLETE()}
-              // },
-              //   ),
-              // ),
-            ])]
+            rows: _buildrows(tickets)
         ,));
   }
 
-  List<DataRow> _buildrows(tickets) {
-    print(tickets.getID());
+  List<DataRow> _buildrows(List<ticketModel>  tickets) {
+
+    data.addTicket(ticketModel.fromJson({"issue": "Keyboard Not working", "campus": "JHB", "id": "1", "completed": "INCOMPLETE", "username": "Waxes27"}));
+    data.addTicket(ticketModel.fromJson({"issue": "Keyboard Not working", "campus": "JHB", "id": "2", "completed": "INCOMPLETE", "username": "Waxes27"}));
+    tickets = data.getTickets();
+    print("THESE ARE THE TICKETS: $tickets");
 
     return tickets
         .map((ticket) => DataRow(cells: [
-              DataCell(Text(ticket.getID.toString())),
+              DataCell(Text(ticket.getID().toString())),
               DataCell(Text(ticket.getUsername())),
               DataCell(Text(ticket.getCampus())),
               DataCell(Text(ticket.getProblem())),
@@ -210,14 +172,7 @@ class ConsoleAppState extends State<ConsoleApp> {
               title: Text("Console App"),
             ),
             body: Center(
-                child: FutureBuilder(
-                    future: futureTickets,
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        Center(child: CircularProgressIndicator());
-                      } else if (snapshot.hasData) {
-                        
-                        return Column(
+                child: Column(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             verticalDirection: VerticalDirection.down,
@@ -225,16 +180,14 @@ class ConsoleAppState extends State<ConsoleApp> {
                               Expanded(
                                   child: Container(
                                       padding: EdgeInsets.all(5),
-                                      child: dataTable(snapshot.data)))
-                            ]);
+                                      child: dataTable(data.getTickets())))
+                            ]))));
                       }
-                      {
-                        return Center();
-                      }
-                    }))));
+                     
+                    
   }
 
-  Future<ticketModel> fetchTickets() async {
+  Future<ticketModel> fetchTicket() async {
     final response = await http.get(Uri.parse(uri));
     
     // print("hello");
@@ -246,11 +199,33 @@ class ConsoleAppState extends State<ConsoleApp> {
       
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      return ticketModel.fromJson(jsonOb[0]);
+      return ticketModel.fromJson(jsonOb);
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
       throw Exception('Failed to load album');
     }
   }
-}
+
+  void fetchTickets() async {
+    final response = await http.get(Uri.parse(uri));
+    
+    // print("hello");
+
+    if (response.statusCode == 200) {
+      List jsonOb = json.decode(response.body);
+      
+      print("NEW JSON OBJECT: ${jsonOb[0]}");
+      
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      data.addTicket(ticketModel.fromJson(jsonOb[0]));
+      print("LIST OF TICKETS: ${data.getTickets()[0]}");
+
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load album');
+    }
+  }
+
