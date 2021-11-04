@@ -43,10 +43,6 @@ SingleChildScrollView dataTable(tickets) {
               label: Text('Status',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               onSort: (i, b) {}),
-          DataColumn(
-              label: Text('',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              onSort: (i, b) {}),
         ],
         rows: _buildrows(tickets),
       ));
@@ -62,9 +58,6 @@ List<DataRow> _buildrows(List<ticketModel> tickets) {
             DataCell(Text(ticket.getUsername())),
             DataCell(Text(ticket.getCampus())),
             DataCell(Text(ticket.getProblem())),
-            DataCell(
-              Text(ticket.isCompleted().toString().replaceAll("Status.", "")),
-            ),
             DataCell(TextButton(
                 style: ButtonStyle(
                   foregroundColor:
@@ -90,7 +83,8 @@ List<DataRow> _buildrows(List<ticketModel> tickets) {
                           //////
                         }
                     },
-                child: Text('Change State')))
+                child: Text(ticket.isCompleted().toString().replaceAll("Status.", "")),
+            ))
             // DataCell(
             //   FloatingActionButton(
             // onPressed: () => {
