@@ -39,24 +39,26 @@ class _HomePageState extends State<_HomePage> {
 
   void fetchTickets() async {
     final response = await http.get(Uri.parse("http://localhost:4444/tickets"));
-    print(response.body);
-
     List jsonOb = await json.decode(response.body);
-
-    data.addTicket(ticketModel.fromJson(jsonOb[0]));
+    for (var item in jsonOb) {
+      print(item);
+      data.addTicket(ticketModel.fromJson(item));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Console"),
-      ),
-      body: FloatingActionButton(
-        onPressed: () {
-          _goToTickets();
-        },
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Console"),
+        ),
+        body: Center(
+          child: ElevatedButton(
+            child: Text("Go to tickets page."),
+            onPressed: () {
+              _goToTickets();
+            },
+          ),
+        ));
   }
 }
