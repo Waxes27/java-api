@@ -38,8 +38,8 @@ class _HomePageState extends State<_HomePage> {
   }
 
   void fetchTickets() async {
-    final response =
-        await http.get(Uri.parse("http://localhost:4444/tickets"));
+    final response = await http.get(Uri.parse("http://localhost:4444/tickets"));
+    print(response.body);
 
     List jsonOb = await json.decode(response.body);
 
