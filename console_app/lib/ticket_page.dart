@@ -9,12 +9,10 @@ class TicketPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      // backgroundColor: Colors.blue,
       appBar: AppBar(title: Text("Ticket Console")),
-      body: Center(
-        child: SingleChildScrollView(child: dataTable(tickets)),
-      ),
-    );
+      body: SingleChildScrollView(child: dataTable(tickets)),
+      );
   }
 }
 
