@@ -3,6 +3,7 @@ import ApiHandler.Ticket;
 
 import java.sql.SQLException;
 import io.javalin.Javalin;
+import io.javalin.core.JavalinConfig;
 import io.javalin.http.Context;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ public class ApiServer {
 
     public static void main(String[] args) {
         int port = 4444;
-        Javalin server = Javalin.create(config -> config.enableCorsForAllOrigins()).start(port);
+        Javalin server = Javalin.create(JavalinConfig::enableCorsForAllOrigins).start(port);
 
         server.post("/tickets", ApiServer::addTicket);
         server.post("/tickets/reset/{id}", ApiServer::resetCounter);
@@ -35,7 +36,7 @@ public class ApiServer {
         List<HashMap<String,String>> tickets;
         Ticket ticket = new Ticket();
         tickets = ticket.getAllTickets(context);
-        
+        System.out.println("Sending JSON:  "+tickets);
         context.json(tickets);
     }
 
