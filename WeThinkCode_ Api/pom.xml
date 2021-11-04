@@ -63,8 +63,14 @@
                             <goal>single</goal>
                         </goals>
                         <configuration>
+                            <outputDirectory>
+                                ${project.build.directory}/libs
+                            </outputDirectory>
                             <archive>
                                 <manifest>
+                                <addClasspath>true</addClasspath>
+                                <classpathPrefix>libs/</classpathPrefix>
+                               
                                     <mainClass>
                                         ApiServer
                                     </mainClass>
