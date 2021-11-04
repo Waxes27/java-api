@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 
 enum Status { Completed, Pending, Incomplete }
 
-  Status stuff(String status){
-    dynamic states = {"incomplete":Status.Incomplete};
-    return states[status];
-  }
-
+Status stuff(String status) {
+  dynamic states = {"incomplete": Status.Incomplete};
+  return states[status];
+}
 
 class ticketModel extends ChangeNotifier {
   var userName;
@@ -16,7 +15,6 @@ class ticketModel extends ChangeNotifier {
   var campus;
   var status;
   List<ticketModel> tickets = [];
-
 
   ticketModel(
       {this.id,
@@ -59,24 +57,25 @@ class ticketModel extends ChangeNotifier {
       }
       notifyListeners();
     }
-
   }
-    void dropAll() {
-      this.tickets.clear();
-      notifyListeners();
-    }
 
-    void pending() {
-      this.status = Status.Pending;
-      notifyListeners();
-    }
 
-    void complete() {
-      this.status = Status.Completed;
-      notifyListeners();
-    }
+  void dropAll() {
+    this.tickets.clear();
+    notifyListeners();
+  }
 
-    List<ticketModel> getTickets() {
-      return this.tickets;
-    }
+  void pending() {
+    this.status = Status.Pending;
+    notifyListeners();
+  }
+
+  void complete() {
+    this.status = Status.Completed;
+    notifyListeners();
+  }
+
+  List<ticketModel> getTickets() {
+    return this.tickets;
+  }
 }
