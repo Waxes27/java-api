@@ -241,7 +241,7 @@ class ConsoleAppState extends State<ConsoleApp> {
 
     if (response.statusCode == 200) {
       List jsonOb = json.decode(response.body);
-      for
+      
       print("NEW JSON OBJECT: ${jsonOb[0]}");
       
       // If the server did return a 200 OK response,
