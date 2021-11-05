@@ -44,6 +44,11 @@ class TicketPageState extends State<TicketPage> {
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 onSort: (i, b) {}),
+                DataColumn(
+                label: Text('Floor',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                onSort: (i, b) {}),
             DataColumn(
                 label: Text('Issue',
                     style:
@@ -73,6 +78,7 @@ class TicketPageState extends State<TicketPage> {
               DataCell(Text(ticket.getID().toString())),
               DataCell(Text(ticket.getUsername())),
               DataCell(Text(ticket.getCampus())),
+              DataCell(Text(ticket.getFloor().toString())),
               DataCell(Text(ticket.getProblem())),
               DataCell(TextButton(
                 style: ButtonStyle(

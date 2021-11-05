@@ -4,10 +4,10 @@ enum Status { Completed, Pending, Incomplete }
 
 Status stuff(String status) {
   dynamic states = {
-    "incomplete": Status.Incomplete, 
-    "pending": Status.Pending, 
+    "incomplete": Status.Incomplete,
+    "pending": Status.Pending,
     "completed": Status.Completed
-    };
+  };
   return states[status];
 }
 
@@ -15,6 +15,7 @@ class ticketModel extends ChangeNotifier {
   var userName;
   var problem;
   var id;
+  var floor;
   // var date;
   var campus;
   var status;
@@ -24,6 +25,7 @@ class ticketModel extends ChangeNotifier {
       {this.id,
       this.userName,
       this.problem,
+      this.floor,
       // this.date,
       this.campus,
       this.status});
@@ -33,6 +35,7 @@ class ticketModel extends ChangeNotifier {
         id: int.parse(json["id"]),
         userName: json["username"],
         problem: json["issue"],
+        floor: int.parse(json["floor"]),
         // date: json["date"],
         campus: json["campus"],
         status: stuff(json['completed'].toLowerCase()));
@@ -45,6 +48,8 @@ class ticketModel extends ChangeNotifier {
   int getID() => this.id;
   Status isCompleted() => this.status;
   // DateTime getCreationDate() => this.date;
+
+  int getFloor() => this.floor;
 
   void completeTicket() => this.status = Status.Completed;
   void startTicket() => this.status = Status.Pending;
@@ -62,7 +67,6 @@ class ticketModel extends ChangeNotifier {
       notifyListeners();
     }
   }
-
 
   void dropAll() {
     this.tickets.clear();
