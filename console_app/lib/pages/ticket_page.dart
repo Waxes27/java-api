@@ -52,6 +52,11 @@ class TicketPageState extends State<TicketPage> {
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 onSort: (i, b) {}),
+              // DataColumn(
+              //   label: Text('',
+              //       style:
+              //           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              //   onSort: (i, b) {}),
           ],
           rows: _buildrows(tickets),
         ));
@@ -98,7 +103,9 @@ class TicketPageState extends State<TicketPage> {
                 },
                 child: Text(
                     ticket.isCompleted().toString().replaceAll("Status.", "")),
-              ))
+              )
+              ),
+              // DataCell(Icon(Icons.done))
               // DataCell(
               //   FloatingActionButton(
               // onPressed: () => {

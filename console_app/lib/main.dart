@@ -1,5 +1,5 @@
 import 'package:app_tut/ticketModel.dart';
-import 'package:app_tut/ticket_page.dart';
+import 'package:app_tut/pages/ticket_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
