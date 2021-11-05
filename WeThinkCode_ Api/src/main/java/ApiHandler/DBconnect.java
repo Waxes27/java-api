@@ -114,24 +114,31 @@ public class DBconnect {
         }
     }
 
-    public void createTables() throws SQLException {
+    public void createTables(Context context) throws SQLException {
 
         Connection connection = connection();
+        String id = context.pathParam("id");
 
         statement = connection.createStatement();
         statement.executeUpdate("create table tickets (id INT NOT NULL AUTO_INCREMENT," +
                 "username VARCHAR(30) NOT NULL," +
                 "campus VARCHAR(30) NOT NULL," +
-                "issue VARCHAR(80) NOT NULL," +
+                "issue VARCHAR("+id+") NOT NULL," +
                 "completed VARCHAR(15),"+
                 "primary key(id))"
         );
+        System.out.println("create table tickets (id INT NOT NULL AUTO_INCREMENT," +
+                "username VARCHAR(30) NOT NULL," +
+                "campus VARCHAR(30) NOT NULL," +
+                "issue VARCHAR("+id+") NOT NULL," +
+                "completed VARCHAR(15),"+
+                "primary key(id))");
 
 
         connection.close();
     }
 
-    public void dropTables() throws SQLException {
+    public void dropTables(Context context) throws SQLException {
         Connection connection = connection();
         // INSERT INTO comments values (default, 'lars', 'myemail@gmail.com','https://www.vogella.com/', '2009-09-14 10:33:11', 'Summary','My first comment' );
 
@@ -139,9 +146,9 @@ public class DBconnect {
         try {
             statement.executeUpdate("drop table tickets");
         }catch (Exception e) {
-            createTables();
+            createTables(context);
         }
-        createTables();
+        createTables(context);
         connection.close();
     }
 }

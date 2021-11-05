@@ -146,9 +146,9 @@ public class Ticket implements TicketInterface{
     }
 
     @Override
-    public void dropTable() throws SQLException {
+    public void dropTable(Context context) throws SQLException {
         DBconnect dBconnect = new DBconnect();
-        dBconnect.dropTables();
+        dBconnect.dropTables(context);
     }
 
     @Override

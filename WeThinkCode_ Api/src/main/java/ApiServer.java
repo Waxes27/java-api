@@ -17,7 +17,7 @@ public class ApiServer {
 
         server.post("/tickets", ApiServer::addTicket);
         server.post("/tickets/reset/{id}", ApiServer::resetCounter);
-        server.post("/tickets/drop", ApiServer::drop);
+        server.post("/tickets/drop/{id}", ApiServer::drop);
         server.post("/ticket/update/{id}/{status}", ApiServer::update);
         server.get("/tickets", ApiServer::getTickets);
     }
@@ -44,10 +44,10 @@ public class ApiServer {
     private static void drop(Context context) throws Exception {
         Ticket ticket = new Ticket();
         try {
-            ticket.dropTable();
+            ticket.dropTable(context);
         }catch (Exception e){
             if(e.toString().contains("Unknown table")){
-                ticket.dropTable();
+                ticket.dropTable(context);
             };
         }
 
