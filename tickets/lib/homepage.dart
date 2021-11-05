@@ -6,6 +6,7 @@ import 'dart:convert';
 dynamic usernameIn;
 dynamic issueIn;
 dynamic campus;
+dynamic floor;
 
 
 class HomePage extends StatefulWidget {
@@ -41,6 +42,7 @@ class HomePageState extends State<HomePage> {
         "author" : usernameIn,
         "issue" : issueIn,
         "campus" : "JHB",
+        "floor" : floor,
       }),
     );
   }
@@ -59,7 +61,7 @@ class HomePageState extends State<HomePage> {
                   hintText: "What is your floor number? (e.g. 4)",
                   contentPadding: EdgeInsets.all(24.0)),
                 onSubmitted: (text) {
-                  usernameIn = text;
+                  floor = text;
                   _goToThankYou();
                   createIssue();
                 },

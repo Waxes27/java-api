@@ -15,6 +15,7 @@ public class Ticket implements TicketInterface{
     private Completed complete;
     private String ticketOwner;
     private int id;
+    private int floor;
 
     @Override
     public String getIssue() {
@@ -48,26 +49,33 @@ public class Ticket implements TicketInterface{
             String campus = data.getString(3);
             String issue = data.getString(4);
             String completed = data.getString(5);
-            tickets.add(serializeTicket(id, username, campus, issue, completed));
+            String floor = data.getString(6);
+            tickets.add(serializeTicket(id, username, campus, issue, completed,floor));
         }
         context.json(tickets);
 
         return tickets;
     }
 
-    public HashMap<String,String> serializeTicket(String id,String username,String campus, String issue,String completed){
+    public HashMap<String,String> serializeTicket(String id,String username,String campus, String issue,String completed,String floor){
         HashMap<String,String> ticket = new HashMap();
         ticket.put("id", id);
         ticket.put("username", username);
         ticket.put("campus", campus);
         ticket.put("issue", issue);
         ticket.put("completed", completed);
+        ticket.put("floor",floor);
         return ticket;
     }
 
     @Override
     public int getTicketId() {
         return this.id;
+    }
+
+    @Override
+    public int getFloor() {
+        return this.floor;
     }
 
     @Override
@@ -135,6 +143,7 @@ public class Ticket implements TicketInterface{
                 "\"issue\":\"" + this.issue + "\"," +
                 "\"ticketId\":\"" + this.id + "\"," +
                 "\"completed\":\"" + this.complete + "\"" +
+                "\"floor\":\"" + this.floor + "\"" +
                 "}"
                 ;
         return command;
