@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+final uri = "http://102.221.36.216:4444/";
 void main() => runApp(ConsoleApp());
 
 class ConsoleApp extends StatelessWidget {
@@ -21,9 +22,29 @@ class _HomePage extends StatefulWidget {
   createState() => _HomePageState();
 }
 
+/*
+POST {ip}/ticket/update/{id}
+*/
 class _HomePageState extends State<_HomePage> {
+  final GlobalKey<TicketPageState> _key = GlobalKey();
 
-    final GlobalKey<TicketPageState> _key = GlobalKey();
+
+  void fetchTickets() async {
+    final response = await http.get(Uri.parse("$uri/tickets"));
+    List jsonOb = await json.decode(response.body);
+    for (var item in jsonOb) {
+      print(item);
+      data.addTicket(ticketModel.fromJson(item));
+    }
+  }
+
+
+  void editTicket(id, status) async {
+    final response =
+        await http.get(Uri.parse("$uri/ticket/update/$id/$status"));
+    
+  }
+
 
   @override
   void initState() {
@@ -36,18 +57,11 @@ class _HomePageState extends State<_HomePage> {
   void _goToTickets() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
-      return TicketPage(tickets: data.getTickets());
+      return TicketPage(tickets: data.getTickets(), editTicket: editTicket,);
     }));
   }
 
-  void fetchTickets() async {
-    final response = await http.get(Uri.parse("http://localhost:4444/tickets"));
-    List jsonOb = await json.decode(response.body);
-    for (var item in jsonOb) {
-      print(item);
-      data.addTicket(ticketModel.fromJson(item));
-    }
-  }
+  
 
   @override
   Widget build(BuildContext context) {

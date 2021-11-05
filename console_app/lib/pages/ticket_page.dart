@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 class TicketPage extends StatefulWidget {
   final List<ticketModel> tickets;
+  final editTicket;
 
-  TicketPage({Key? key, required this.tickets}) : super(key: key);
+  TicketPage({Key? key, required this.tickets, required this.editTicket})
+      : super(key: key);
 
   @override
   TicketPageState createState() => TicketPageState();
@@ -52,11 +54,11 @@ class TicketPageState extends State<TicketPage> {
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 onSort: (i, b) {}),
-              // DataColumn(
-              //   label: Text('',
-              //       style:
-              //           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              //   onSort: (i, b) {}),
+            // DataColumn(
+            //   label: Text('',
+            //       style:
+            //           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            //   onSort: (i, b) {}),
           ],
           rows: _buildrows(tickets),
         ));
@@ -92,19 +94,30 @@ class TicketPageState extends State<TicketPage> {
                     {
                       setState(() {
                         ticket.pending();
+                        widget.editTicket(
+                            ticket.getID(),
+                            ticket
+                                .isCompleted()
+                                .toString()
+                                .replaceAll("Status.", ''));
                       })
                     }
                   else if (ticket.isCompleted() == Status.Pending)
                     {
                       setState(() {
                         ticket.complete();
+                        widget.editTicket(
+                            ticket.getID(),
+                            ticket
+                                .isCompleted()
+                                .toString()
+                                .replaceAll("Status.", ''));
                       })
                     }
                 },
                 child: Text(
                     ticket.isCompleted().toString().replaceAll("Status.", "")),
-              )
-              ),
+              )),
               // DataCell(Icon(Icons.done))
               // DataCell(
               //   FloatingActionButton(
