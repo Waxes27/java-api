@@ -3,7 +3,11 @@ import 'package:flutter/cupertino.dart';
 enum Status { Completed, Pending, Incomplete }
 
 Status stuff(String status) {
-  dynamic states = {"incomplete": Status.Incomplete};
+  dynamic states = {
+    "incomplete": Status.Incomplete, 
+    "pending": Status.Pending, 
+    "complete": Status.Completed
+    };
   return states[status];
 }
 
