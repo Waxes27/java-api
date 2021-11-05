@@ -125,6 +125,7 @@ public class DBconnect {
                 "campus VARCHAR(30) NOT NULL," +
                 "issue VARCHAR("+id+") NOT NULL," +
                 "completed VARCHAR(15),"+
+                "floor INT"+
                 "primary key(id))"
         );
         System.out.println("create table tickets (id INT NOT NULL AUTO_INCREMENT," +
