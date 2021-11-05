@@ -65,6 +65,7 @@ public class Ticket implements TicketInterface{
         ticket.put("issue", issue);
         ticket.put("completed", completed);
         ticket.put("floor",floor);
+        System.out.println("TICKET: "+ticket);
         return ticket;
     }
 
@@ -117,8 +118,8 @@ public class Ticket implements TicketInterface{
 
         newTicket.setCampus(ticket.get("campus").toString());
         newTicket.setTicketOwner(ticket.get("author").toString());
-//        newTicket.setTicketId(1);
         newTicket.setIssue(ticket.get("issue").toString());
+        newTicket.setFloor(ticket.get("floor").toString());
         newTicket.completed(Completed.INCOMPLETE);
 
 
@@ -165,5 +166,10 @@ public class Ticket implements TicketInterface{
         DBconnect dBconnect = new DBconnect();
         dBconnect.updateDatabase(context);
 
+    }
+
+    @Override
+    public void setFloor(String floor) {
+        this.floor = Integer.parseInt(floor);
     }
 }

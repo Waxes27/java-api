@@ -43,4 +43,6 @@ public interface TicketInterface {
      void dropTable(Context context) throws SQLException;
 
      void updateTicket(Context context) throws SQLException;
+
+     void setFloor(String floor);
 }
