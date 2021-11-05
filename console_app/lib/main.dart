@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-final uri = "http://102.221.36.216:4444/";
+final uri = "http://102.221.36.216:4444";
 void main() => runApp(ConsoleApp());
 
 class ConsoleApp extends StatelessWidget {
@@ -41,7 +41,7 @@ class _HomePageState extends State<_HomePage> {
 
   void editTicket(id, status) async {
     final response =
-        await http.get(Uri.parse("$uri/ticket/update/$id/$status"));
+        await http.post(Uri.parse("$uri/ticket/update/$id/$status"));
     
   }
 
