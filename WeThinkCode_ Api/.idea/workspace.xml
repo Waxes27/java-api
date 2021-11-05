@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="078a4be2-c14b-4e4c-a696-029efcd51923" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ApiHandler/DBconnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiHandler/DBconnect.java" afterDir="false" />
-    </list>
+    <list default="true" id="078a4be2-c14b-4e4c-a696-029efcd51923" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -42,7 +42,7 @@ class HomePageState extends State<HomePage> {
         "author" : usernameIn,
         "issue" : issueIn,
         "campus" : "JHB",
-        "floor" : 
+        "floor" : floor,
       }),
     );
   }
