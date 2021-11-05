@@ -6,7 +6,7 @@ Status stuff(String status) {
   dynamic states = {
     "incomplete": Status.Incomplete, 
     "pending": Status.Pending, 
-    "complete": Status.Completed
+    "completed": Status.Completed
     };
   return states[status];
 }
