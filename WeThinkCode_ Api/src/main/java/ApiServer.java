@@ -18,6 +18,7 @@ public class ApiServer {
         server.post("/tickets", ApiServer::addTicket);
         server.post("/tickets/reset/{id}", ApiServer::resetCounter);
         server.post("/tickets/drop", ApiServer::drop);
+        server.post("/ticket/update/{id}/{status}", ApiServer::update);
         server.get("/tickets", ApiServer::getTickets);
     }
 
@@ -51,6 +52,12 @@ public class ApiServer {
         }
 
         context.json("Tables Dropped and created");
+    }
+
+    private static void update(Context context) throws Exception {
+        Ticket ticket = new Ticket();
+        ticket.updateTicket(context);
+
     }
 
 

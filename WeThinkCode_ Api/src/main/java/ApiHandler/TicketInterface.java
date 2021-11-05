@@ -39,4 +39,6 @@ public interface TicketInterface {
      void reset(int id,Context context) throws SQLException;
 
      void dropTable() throws SQLException;
+
+     void updateTicket(Context context) throws SQLException;
 }

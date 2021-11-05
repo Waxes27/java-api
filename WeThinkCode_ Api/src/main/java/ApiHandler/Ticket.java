@@ -150,4 +150,11 @@ public class Ticket implements TicketInterface{
         DBconnect dBconnect = new DBconnect();
         dBconnect.dropTables();
     }
+
+    @Override
+    public void updateTicket(Context context) throws SQLException {
+        DBconnect dBconnect = new DBconnect();
+        dBconnect.updateDatabase(context);
+
+    }
 }

@@ -83,6 +83,20 @@ public class DBconnect {
         connection.close();
     }
 
+    public void updateDatabase(Context context) throws SQLException {
+        Connection connection = connection();
+        String status = context.pathParam("status");
+        String id = context.pathParam("id");
+        // INSERT INTO comments values (default, 'lars', 'myemail@gmail.com','https://www.vogella.com/', '2009-09-14 10:33:11', 'Summary','My first comment' );
+
+        statement = connection.createStatement();
+        System.out.println("update tickets set completed="+status+" where id="+id);
+        statement.executeUpdate("update tickets set completed="+status+" where id="+id);
+
+        context.json("Ticket "+id+":\n has been updated to "+status);
+        connection.close();
+    }
+
     public void resetCounter(int id, Context context) throws SQLException {
         Connection connection = connection();
         // INSERT INTO comments values (default, 'lars', 'myemail@gmail.com','https://www.vogella.com/', '2009-09-14 10:33:11', 'Summary','My first comment' );
