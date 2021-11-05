@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tickets">
+    package="com.example.tickets"
+    android:versionCode="1"
+    android:versionName="Alpha"
+    >
    <application
-        android:label="tickets"
+        android:label="WeThinkCode_"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -38,4 +41,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET"
 </manifest>

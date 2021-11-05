@@ -91,7 +91,7 @@ public class DBconnect {
 
         statement = connection.createStatement();
         System.out.println("update tickets set completed="+status+" where id="+id);
-        statement.executeUpdate("update tickets set completed="+status+" where id="+id);
+        statement.executeUpdate("update tickets set completed='"+status.toUpperCase()+"' where id='"+id+"'");
 
         context.json("Ticket "+id+":\n has been updated to "+status);
         connection.close();
