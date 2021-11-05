@@ -31,6 +31,7 @@ class ticketModel extends ChangeNotifier {
       this.status});
 
   factory ticketModel.fromJson(json) {
+    print(json);
     var newTicket = ticketModel(
         id: int.parse(json["id"]),
         userName: json["username"],
