@@ -73,13 +73,16 @@ public class DBconnect {
         System.out.println("insert into tickets values (default,"+ticket.getTicketOwner()+","
                 +ticket.getCampus()+ ","+
                 ticket.getIssue()+ ","+
+                ticket.getFloor()+ ","+
 //                ticket.getIssue()+ ","+
                 ticket.completed(Completed.INCOMPLETE)+")");
-        statement.executeUpdate("insert into tickets(username,campus,issue,completed) values ("
+        statement.executeUpdate("insert into tickets(username,campus,issue,completed,floor) values ("
                 + "\"" + ticket.getTicketOwner()+"\","
                 + "\"" + ticket.getCampus()+ "\","
                 + "\"" + ticket.getIssue()+ "\","
-                + "\"" + ticket.completed(Completed.INCOMPLETE)+"\")");
+                + "\"" + ticket.completed(Completed.INCOMPLETE)+"\","
+                + "\"" + ticket.getFloor()+ "\")"
+        );
         connection.close();
     }
 
@@ -133,6 +136,7 @@ public class DBconnect {
                 "campus VARCHAR(30) NOT NULL," +
                 "issue VARCHAR("+id+") NOT NULL," +
                 "completed VARCHAR(15),"+
+                "floor INT,"+
                 "primary key(id))");
 
 

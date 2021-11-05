@@ -22,6 +22,8 @@ public interface TicketInterface {
 
      int getTicketId();
 
+     int getFloor();
+
      void setTicketId(int id);
 
      void setTicketOwner(String owner);
