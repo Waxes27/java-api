@@ -22,6 +22,9 @@ class _HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<_HomePage> {
+
+    final GlobalKey<TicketPageState> _key = GlobalKey();
+
   @override
   void initState() {
     super.initState();
