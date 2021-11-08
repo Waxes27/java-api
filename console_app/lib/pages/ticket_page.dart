@@ -44,7 +44,7 @@ class TicketPageState extends State<TicketPage> {
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 onSort: (i, b) {}),
-                DataColumn(
+            DataColumn(
                 label: Text('Floor',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
@@ -59,6 +59,11 @@ class TicketPageState extends State<TicketPage> {
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 onSort: (i, b) {}),
+            DataColumn(
+            label: Text('date',
+                style:
+                    TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            onSort: (i, b) {}),
             // DataColumn(
             //   label: Text('',
             //       style:
@@ -123,7 +128,10 @@ class TicketPageState extends State<TicketPage> {
                 },
                 child: Text(
                     ticket.isCompleted().toString().replaceAll("Status.", "")),
-              )),
+              ),
+              
+              ),
+              DataCell(Text("2021-11-8")),
               // DataCell(Icon(Icons.done))
               // DataCell(
               //   FloatingActionButton(
