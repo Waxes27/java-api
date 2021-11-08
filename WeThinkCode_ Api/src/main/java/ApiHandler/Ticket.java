@@ -162,6 +162,8 @@ public class Ticket implements TicketInterface{
                 newTicket.setCategory(Category.OTHER);
 
         }
+
+        System.out.println(newTicket);
         
 
 
