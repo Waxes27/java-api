@@ -97,6 +97,7 @@ public class Ticket implements TicketInterface{
         ticket.put("completed", completed);
         ticket.put("floor",floor);
         ticket.put("date",date);
+        ticket.put("category",category);
         ticket.put("referenceId",referenceId);
         return ticket;
     }
