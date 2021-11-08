@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 final ip = "102.221.36.216";
-final uri = "http://localhost:4444";
+final uri = "http://$ip:4444";
 void main() => runApp(ConsoleApp());
 
 class ConsoleApp extends StatelessWidget {

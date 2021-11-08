@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:tickets/pages/issues_page.dart';
 import 'dart:convert';
-
+import 'pages/floor.dart';
+import 'pages/thankyou.dart';
 
 dynamic usernameIn;
 dynamic issueIn;
 dynamic campus;
 dynamic floor;
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,87 +16,87 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: _bar()),
+      body: _homePageBody(context),
+    );
+  }
 
   void _goToIssues() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
-      return _issueHomePage(context);
+      return IssuesPage();
     }));
   }
 
-  void _goToThankYou(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-      return _thankYou(context);
-    }));
-  }
+  // void _goToThankYou() {
+  //   Navigator.of(context)
+  //       .push(MaterialPageRoute(builder: (BuildContext context) {
+  //     return _thankYou(context);
+  //   }));
+  // }
 
-  void _goToFloor(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-    return _floor(context);
-    }));
-  }
-
+  // void _goToFloor() {
+  //   Navigator.of(context)
+  //       .push(MaterialPageRoute(builder: (BuildContext context) {
+  //     return _floor(context);
+  //   }));
+  // }
 
   Future<http.Response> createIssue() async {
-    return await http.post(Uri.parse('http://localhost:4444/tickets'),
+    String ip = "102.221.36.216";
+    return await http.post(
+      Uri.parse('http://localhost:4444/tickets'),
       body: jsonEncode(<String, String>{
-        "author" : usernameIn,
-        "issue" : issueIn,
-        "campus" : "JHB",
-        "floor" : floor,
+        "author": usernameIn,
+        "issue": issueIn,
+        "campus": "JHB",
+        "floor": floor,
       }),
     );
   }
 
+  Widget _floor(BuildContext context) {
+    return FloorPage();
 
-  Widget _floor(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        title: _bar(context),
-      ),
-      body: Container(
-            padding: const EdgeInsets.all(50.0),
-            child: Center(
-              child: TextField(
-                decoration: const InputDecoration(
-                  hintText: "What is your floor number? (e.g. 4)",
-                  contentPadding: EdgeInsets.all(24.0)),
-                onSubmitted: (text) {
-                  floor = text;
-                  _goToThankYou();
-                  createIssue();
-                },
-              ),
-            ))
-    );
+    // child: TextField(
+    //   decoration: const InputDecoration(
+    //     hintText: "What is your floor number? (e.g. 4)",
+    //     contentPadding: EdgeInsets.all(24.0)),
+    //   onSubmitted: (text) {
+    //     floor = text;
+    //     _goToThankYou();
+    //     createIssue();
+    //   },
+    // ),
+    // ));
   }
 
-
-  Widget _bar(BuildContext context) {
+  Widget _bar() {
     return AppBar(
         title: const Center(
       child: Text("Welcome to the WeThinkCode_ Ticketing System"),
     ));
   }
 
-
-  Widget _thankYou(BuildContext context){
-    return Scaffold(
-      backgroundColor: Colors.blue,
-      appBar: AppBar(title: _bar(context)),
-      body: const Center(
-        child: Text(
-          "Your ticket has been lodged... Give it about 1 Hour to reach resolution",
-          style: TextStyle(
-                  fontSize: 24,
-                  fontFamily: "aria",
-                  
-                  ),
-          ),
-        ),
-    );
+  Widget _thankYou(BuildContext context) {
+    return EndPage();
   }
-
+  // return Scaffold(
+  //   backgroundColor: Colors.blue,
+  //   appBar: AppBar(title: _bar()),
+  //   body: const Center(
+  //     child: Text(
+  //       "Your ticket has been lodged... Give it about 1 Hour to reach resolution",
+  //       style: TextStyle(
+  //         fontSize: 24,
+  //         fontFamily: "aria",
+  //       ),
+  //     ),
+  //   ),
+  // );
 
   Widget _homePageBody(BuildContext context) {
     return Scaffold(
@@ -110,38 +111,11 @@ class HomePageState extends State<HomePage> {
                   String qwer = '[{"campus":"JHB"},{"campus":"CPT"}]';
                   print(json.decode(qwer)[0]);
                   usernameIn = text;
+                  // Navigator.pop(context);
                   _goToIssues();
                 },
+                autofocus: true,
               ),
             )));
-            
-  }
-  
-  Widget _issueHomePage(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: _bar(context),),
-        body: Container(
-            padding: const EdgeInsets.all(50.0),
-            child: Center(
-              child: TextField(
-                decoration: const InputDecoration(
-                    hintText: "What is the issue today?",
-                    contentPadding: EdgeInsets.all(24.0)),
-                onSubmitted: (text) {
-                  issueIn = text;
-                  // createIssue();
-                  // _goToThankYou();
-                  _goToFloor();
-                },
-              ),
-            )));
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: _bar(context)),
-      body: _homePageBody(context),
-      
-    );
   }
 }

@@ -15,11 +15,35 @@ public class Ticket implements TicketInterface{
 
     private String campus;
     private String issue;
+    private Category category;
     private Completed complete;
     private String ticketOwner;
+    private long referenceId;
     private int id;
     private int floor;
     private String date;
+
+    @Override
+    public void setCategory(Category value){
+        category = value;
+    };
+
+    @Override
+    public Category getCategory(){
+        return category;
+    };
+
+    @Override
+    public long getReferenceId(){
+        return referenceId;
+    };
+
+
+    @Override
+    public void setReferenceId(){
+        referenceId = System.currentTimeMillis();
+        System.out.println("\n\n\n\n\n\n"+referenceId);
+    };
 
     @Override
     public String getIssue() {
@@ -55,7 +79,7 @@ public class Ticket implements TicketInterface{
                 , data.getString(4), data.getString(5),data.getString(6)
                 ,data.getString(7)));
         }
-        context.json(tickets);
+        // context.json(tickets);
 
         return tickets;
     }
@@ -69,6 +93,7 @@ public class Ticket implements TicketInterface{
         ticket.put("completed", completed);
         ticket.put("floor",floor);
         ticket.put("date",date);
+        ticket.put("referenceId",Long.toString(referenceId));
         return ticket;
     }
 
@@ -121,6 +146,23 @@ public class Ticket implements TicketInterface{
         newTicket.setFloor(ticket.get("floor").toString());
         newTicket.completed(Completed.INCOMPLETE);
         newTicket.setDate();
+        newTicket.setReferenceId();
+
+        switch (ticket.get("category").toString()){
+            case "hardware":
+                newTicket.setCategory(Category.HARDWARE);
+                break;
+            case "software":
+                newTicket.setCategory(Category.SOFTWARE);
+                break;
+            case "lms":
+                newTicket.setCategory(Category.LMS);
+                break;
+            default:
+                newTicket.setCategory(Category.OTHER);
+
+        }
+        
 
 
         storeTicket(newTicket);

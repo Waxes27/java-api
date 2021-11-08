@@ -70,21 +70,29 @@ public class DBconnect {
         // INSERT INTO comments values (default, 'lars', 'myemail@gmail.com','https://www.vogella.com/', '2009-09-14 10:33:11', 'Summary','My first comment' );
 
         statement = connection.createStatement();
-        System.out.println("insert into tickets values (default,"+ticket.getTicketOwner()+","
-                +ticket.getCampus()+ ","+
-                ticket.getIssue()+ ","+
-                ticket.getFloor()+ ","+
-//                ticket.getIssue()+ ","+
-                ticket.completed(Completed.INCOMPLETE)+")");
-        statement.executeUpdate("insert into tickets(username,campus,issue,completed,floor,date) values ("
+        System.out.println("insert into tickets(username,campus,issue,completed,floor,date,category,reference_id) values ("
+        + "\"" + ticket.getTicketOwner()+"\","
+        + "\"" + ticket.getCampus()+ "\","
+        + "\"" + ticket.getIssue()+ "\","
+        + "\"" + ticket.completed(Completed.INCOMPLETE)+"\","
+        + "\"" + ticket.getFloor()+ "\","
+        + "\"" + ticket.getDate() + "\","
+        + "\"" + ticket.getCategory() + "\","
+        + "\"" + ticket.getReferenceId() + "\""
+        + ")"
+);
+        statement.executeUpdate("insert into tickets(username,campus,issue,completed,floor,date,category,reference_id) values ("
                 + "\"" + ticket.getTicketOwner()+"\","
                 + "\"" + ticket.getCampus()+ "\","
                 + "\"" + ticket.getIssue()+ "\","
                 + "\"" + ticket.completed(Completed.INCOMPLETE)+"\","
                 + "\"" + ticket.getFloor()+ "\","
-                + "\"" + ticket.getDate() + "\""
+                + "\"" + ticket.getDate() + "\","
+                + "\"" + ticket.getCategory() + "\","
+                + "\"" + ticket.getReferenceId() + "\""
                 + ")"
         );
+        System.out.println(ticket.getCategory());
         connection.close();
     }
 
@@ -133,6 +141,7 @@ public class DBconnect {
                 "floor INT,"+
                 "date VARCHAR(20)," +
                 "category VARCHAR(10)," +
+                "reference_id VARCHAR(20) UNIQUE," +
                 "primary key(id))"
         );
         System.out.println("create table tickets (id INT NOT NULL AUTO_INCREMENT," +
@@ -142,7 +151,10 @@ public class DBconnect {
         "completed VARCHAR(15),"+
         "floor INT,"+
         "date VARCHAR(20)," +
-        "primary key(id))");
+        "category VARCHAR(10)," +
+        "reference_id VARCHAR(6) UNIQUE," +
+        "primary key(id))"
+);
 
 
         connection.close();

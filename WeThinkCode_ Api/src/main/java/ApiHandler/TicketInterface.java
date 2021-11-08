@@ -49,4 +49,12 @@ public interface TicketInterface {
      String getDate();
 
      void setDate();
+
+     long getReferenceId();
+
+     void setReferenceId();
+
+     void setCategory(Category value);
+
+     Category getCategory();
 }
