@@ -48,14 +48,12 @@ public class Ticket implements TicketInterface{
         ResultSet data = dBconnect.readDataBase();
 
         while (data.next()){
-            String id = data.getString(1);
-            String username = data.getString(2);
-            String campus = data.getString(3);
-            String issue = data.getString(4);
-            String completed = data.getString(5);
-            String floor = data.getString(6);
-            String date = data.getString(7);
-            tickets.add(serializeTicket(id, username, campus, issue, completed,floor,date));
+            tickets.add(serializeTicket(
+                data.getString(1)
+                , data.getString(2)
+                , data.getString(3)
+                , data.getString(4), data.getString(5),data.getString(6)
+                ,data.getString(7)));
         }
         context.json(tickets);
 
@@ -71,7 +69,6 @@ public class Ticket implements TicketInterface{
         ticket.put("completed", completed);
         ticket.put("floor",floor);
         ticket.put("date",date);
-        System.out.println("TICKET: "+ticket);
         return ticket;
     }
 
@@ -98,9 +95,6 @@ public class Ticket implements TicketInterface{
 
     @Override
     public void storeTicket(Ticket ticket) throws Exception {
-        System.out.println("Storing Ticket"+ticket+" with ID: "+ticket.getTicketId());
-        System.out.println(ticket.toString());
-
         DBconnect connection = new DBconnect();
         connection.writeDatabase(ticket);
     }
@@ -120,8 +114,6 @@ public class Ticket implements TicketInterface{
         Ticket newTicket = new Ticket();
 
         JSONObject ticket = new JSONObject(command);
-
-//        System.out.println(ticket);
 
         newTicket.setCampus(ticket.get("campus").toString());
         newTicket.setTicketOwner(ticket.get("author").toString());
@@ -149,8 +141,8 @@ public class Ticket implements TicketInterface{
                 "\"campus\":\"" + this.campus+ "\"," +
                 "\"issue\":\"" + this.issue + "\"," +
                 "\"ticketId\":\"" + this.id + "\"," +
-                "\"completed\":\"" + this.complete + "\"" +
-                "\"floor\":\"" + this.floor + "\"" +
+                "\"completed\":\"" + this.complete + "\"," +
+                "\"floor\":\"" + this.floor + "\"," +
                 "\"date\":\"" + this.date + "\"" +
                 "}"
                 ;
@@ -191,6 +183,5 @@ public class Ticket implements TicketInterface{
 
         
         this.date = formatter.format(dateTemp);
-        System.out.println(dateTemp);
     }
 }

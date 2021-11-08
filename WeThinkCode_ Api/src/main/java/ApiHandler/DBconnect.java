@@ -76,12 +76,14 @@ public class DBconnect {
                 ticket.getFloor()+ ","+
 //                ticket.getIssue()+ ","+
                 ticket.completed(Completed.INCOMPLETE)+")");
-        statement.executeUpdate("insert into tickets(username,campus,issue,completed,floor) values ("
+        statement.executeUpdate("insert into tickets(username,campus,issue,completed,floor,date) values ("
                 + "\"" + ticket.getTicketOwner()+"\","
                 + "\"" + ticket.getCampus()+ "\","
                 + "\"" + ticket.getIssue()+ "\","
                 + "\"" + ticket.completed(Completed.INCOMPLETE)+"\","
-                + "\"" + ticket.getFloor()+ "\")"
+                + "\"" + ticket.getFloor()+ "\","
+                + "\"" + ticket.getDate() + "\""
+                + ")"
         );
         connection.close();
     }
@@ -129,15 +131,18 @@ public class DBconnect {
                 "issue VARCHAR("+id+") NOT NULL," +
                 "completed VARCHAR(15),"+
                 "floor INT,"+
+                "date VARCHAR(20)," +
+                "category VARCHAR(10)," +
                 "primary key(id))"
         );
         System.out.println("create table tickets (id INT NOT NULL AUTO_INCREMENT," +
-                "username VARCHAR(30) NOT NULL," +
-                "campus VARCHAR(30) NOT NULL," +
-                "issue VARCHAR("+id+") NOT NULL," +
-                "completed VARCHAR(15),"+
-                "floor INT,"+
-                "primary key(id))");
+        "username VARCHAR(30) NOT NULL," +
+        "campus VARCHAR(30) NOT NULL," +
+        "issue VARCHAR("+id+") NOT NULL," +
+        "completed VARCHAR(15),"+
+        "floor INT,"+
+        "date VARCHAR(20)," +
+        "primary key(id))");
 
 
         connection.close();
