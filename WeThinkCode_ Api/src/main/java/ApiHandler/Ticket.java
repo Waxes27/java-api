@@ -76,15 +76,19 @@ public class Ticket implements TicketInterface{
                 data.getString(1)
                 , data.getString(2)
                 , data.getString(3)
-                , data.getString(4), data.getString(5),data.getString(6)
-                ,data.getString(7)));
+                , data.getString(4)
+                , data.getString(5)
+                ,data.getString(6)
+                ,data.getString(7)
+                ,data.getString(8)
+                ,data.getString(9)));
         }
         // context.json(tickets);
 
         return tickets;
     }
 
-    public HashMap<String,String> serializeTicket(String id,String username,String campus, String issue,String completed,String floor,String date){
+    public HashMap<String,String> serializeTicket(String id,String username,String campus, String issue,String completed,String floor,String date,String category,String referenceId){
         HashMap<String,String> ticket = new HashMap<>();
         ticket.put("id", id);
         ticket.put("username", username);
@@ -93,7 +97,7 @@ public class Ticket implements TicketInterface{
         ticket.put("completed", completed);
         ticket.put("floor",floor);
         ticket.put("date",date);
-        ticket.put("referenceId",Long.toString(referenceId));
+        ticket.put("referenceId",referenceId);
         return ticket;
     }
 
