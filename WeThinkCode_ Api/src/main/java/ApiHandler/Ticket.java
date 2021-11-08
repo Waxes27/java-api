@@ -188,6 +188,8 @@ public class Ticket implements TicketInterface{
                 "\"completed\":\"" + this.complete + "\"," +
                 "\"floor\":\"" + this.floor + "\"," +
                 "\"date\":\"" + this.date + "\"" +
+                "\"category\":\"" + this.category + "\"" +
+                "\"referenceId\":\"" + this.referenceId + "\"" +
                 "}"
                 ;
     }
