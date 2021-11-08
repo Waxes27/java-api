@@ -14,13 +14,16 @@ class TicketPage extends StatefulWidget {
 
 class TicketPageState extends State<TicketPage> {
 
-  MaterialColor _color(ticket) {
+  Icon _color(ticket) {
     if (ticket.isCompleted() == Status.Incomplete) {
-      return Colors.red;
+      return Icon(Icons.unpublished  , color:Colors.red);
     } else if (ticket.isCompleted() == Status.Pending) {
-      return Colors.amber;
+      return Icon(Icons.do_disturb_on_sharp  , color:Colors.amberAccent[400]);
     }
-    return Colors.green;
+    return Icon(Icons.check_circle  , color:Colors.limeAccent[700]);
+
+    //do_disturb_on_sharp 
+    //check_circle 
   }
 
   @override
@@ -90,7 +93,7 @@ class TicketPageState extends State<TicketPage> {
     // final ticketHandler handler = ticketHandler();
     return tickets
         .map((ticket) => DataRow(cells: [
-              DataCell(Icon(Icons.brightness_1  , color: _color(ticket))),
+              DataCell(_color(ticket)),
               DataCell(Text(ticket.getID().toString())),
               DataCell(Text(ticket.getUsername())),
               DataCell(Text(ticket.getCreationDate())),
