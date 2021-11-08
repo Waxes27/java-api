@@ -41,8 +41,8 @@ public class Ticket implements TicketInterface{
 
     @Override
     public void setReferenceId(){
-        referenceId = System.currentTimeMillis();
-        System.out.println("\n\n\n\n\n\n"+referenceId);
+        this.referenceId = System.currentTimeMillis();
+        System.out.println("\n\n\n\n\n\n"+Long.toString(this.referenceId));
     };
 
     @Override
