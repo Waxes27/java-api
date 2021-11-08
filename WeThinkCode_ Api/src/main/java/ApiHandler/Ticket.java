@@ -4,9 +4,12 @@ import io.javalin.http.Context;
 import org.json.JSONObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
 
 public class Ticket implements TicketInterface{
 
@@ -16,6 +19,7 @@ public class Ticket implements TicketInterface{
     private String ticketOwner;
     private int id;
     private int floor;
+    private String date;
 
     @Override
     public String getIssue() {
@@ -50,21 +54,23 @@ public class Ticket implements TicketInterface{
             String issue = data.getString(4);
             String completed = data.getString(5);
             String floor = data.getString(6);
-            tickets.add(serializeTicket(id, username, campus, issue, completed,floor));
+            String date = data.getString(7);
+            tickets.add(serializeTicket(id, username, campus, issue, completed,floor,date));
         }
         context.json(tickets);
 
         return tickets;
     }
 
-    public HashMap<String,String> serializeTicket(String id,String username,String campus, String issue,String completed,String floor){
-        HashMap<String,String> ticket = new HashMap();
+    public HashMap<String,String> serializeTicket(String id,String username,String campus, String issue,String completed,String floor,String date){
+        HashMap<String,String> ticket = new HashMap<>();
         ticket.put("id", id);
         ticket.put("username", username);
         ticket.put("campus", campus);
         ticket.put("issue", issue);
         ticket.put("completed", completed);
         ticket.put("floor",floor);
+        ticket.put("date",date);
         System.out.println("TICKET: "+ticket);
         return ticket;
     }
@@ -92,7 +98,8 @@ public class Ticket implements TicketInterface{
 
     @Override
     public void storeTicket(Ticket ticket) throws Exception {
-        System.out.println("Storing Ticket"+ticket+" with ID:"+ticket.getTicketId());
+        System.out.println("Storing Ticket"+ticket+" with ID: "+ticket.getTicketId());
+        System.out.println(ticket.toString());
 
         DBconnect connection = new DBconnect();
         connection.writeDatabase(ticket);
@@ -121,10 +128,9 @@ public class Ticket implements TicketInterface{
         newTicket.setIssue(ticket.get("issue").toString());
         newTicket.setFloor(ticket.get("floor").toString());
         newTicket.completed(Completed.INCOMPLETE);
+        newTicket.setDate();
 
 
-
-//        toUser(context);
         storeTicket(newTicket);
         return newTicket;
     }
@@ -138,16 +144,16 @@ public class Ticket implements TicketInterface{
     @Override
     public String toString(){
 
-        String command =  "{" +
+        return "{" +
                 "\"ticketOwner\":\"" + this.ticketOwner + "\"," +
                 "\"campus\":\"" + this.campus+ "\"," +
                 "\"issue\":\"" + this.issue + "\"," +
                 "\"ticketId\":\"" + this.id + "\"," +
                 "\"completed\":\"" + this.complete + "\"" +
                 "\"floor\":\"" + this.floor + "\"" +
+                "\"date\":\"" + this.date + "\"" +
                 "}"
                 ;
-        return command;
     }
 
     public void reset(int id,Context context) throws SQLException {
@@ -171,5 +177,20 @@ public class Ticket implements TicketInterface{
     @Override
     public void setFloor(String floor) {
         this.floor = Integer.parseInt(floor);
+    }
+
+    @Override
+    public String getDate() {
+        return this.date;
+    }
+
+    @Override
+    public void setDate() {
+        Date dateTemp = new Date(System.currentTimeMillis());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+        
+        this.date = formatter.format(dateTemp);
+        System.out.println(dateTemp);
     }
 }

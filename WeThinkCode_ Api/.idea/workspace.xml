@@ -7,6 +7,7 @@
     <list default="true" id="078a4be2-c14b-4e4c-a696-029efcd51923" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ApiHandler/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiHandler/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ApiHandler/TicketInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ApiHandler/TicketInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

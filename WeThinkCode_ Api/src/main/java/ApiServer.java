@@ -1,5 +1,5 @@
 import ApiHandler.Ticket;
-//import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
+// import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 
 import java.sql.SQLException;
 import io.javalin.Javalin;
@@ -23,8 +23,7 @@ public class ApiServer {
     }
 
     private static void resetCounter(Context context) throws SQLException {
-        Ticket ticket = new Ticket();
-        ticket.reset(Integer.parseInt(context.pathParam("id")),context);
+        new Ticket().reset(Integer.parseInt(context.pathParam("id")),context);
     }
 
     private static void addTicket(Context context) throws Exception {

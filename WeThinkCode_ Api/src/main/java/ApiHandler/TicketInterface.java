@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface TicketInterface {
-     String campus = null;
+//     String campus = null;
 
      String getIssue();
-
+ 
      String getTicketOwner();
 
      String getCampus();
@@ -45,4 +45,8 @@ public interface TicketInterface {
      void updateTicket(Context context) throws SQLException;
 
      void setFloor(String floor);
+
+     String getDate();
+
+     void setDate();
 }
