@@ -13,6 +13,16 @@ class TicketPage extends StatefulWidget {
 }
 
 class TicketPageState extends State<TicketPage> {
+
+  MaterialColor _color(ticket) {
+    if (ticket.isCompleted() == Status.Incomplete) {
+      return Colors.red;
+    } else if (ticket.isCompleted() == Status.Pending) {
+      return Colors.amber;
+    }
+    return Colors.green;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +40,11 @@ class TicketPageState extends State<TicketPage> {
           sortAscending: true,
           columns: [
             DataColumn(
+                label: Text('',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                onSort: (i, b) {}),
+            DataColumn(
                 label: Text('ID',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
@@ -40,11 +55,16 @@ class TicketPageState extends State<TicketPage> {
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 onSort: (i, b) {}),
             DataColumn(
+                label: Text('Date Issued',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                onSort: (i, b) {}),
+            DataColumn(
                 label: Text('Campus',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 onSort: (i, b) {}),
-                DataColumn(
+            DataColumn(
                 label: Text('Floor',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
@@ -59,11 +79,6 @@ class TicketPageState extends State<TicketPage> {
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 onSort: (i, b) {}),
-            // DataColumn(
-            //   label: Text('',
-            //       style:
-            //           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            //   onSort: (i, b) {}),
           ],
           rows: _buildrows(tickets),
         ));
@@ -75,8 +90,10 @@ class TicketPageState extends State<TicketPage> {
     // final ticketHandler handler = ticketHandler();
     return tickets
         .map((ticket) => DataRow(cells: [
+              DataCell(Icon(Icons.brightness_1  , color: _color(ticket))),
               DataCell(Text(ticket.getID().toString())),
               DataCell(Text(ticket.getUsername())),
+              DataCell(Text(ticket.getCreationDate())),
               DataCell(Text(ticket.getCampus())),
               DataCell(Text(ticket.getFloor().toString())),
               DataCell(Text(ticket.getProblem())),
@@ -124,18 +141,10 @@ class TicketPageState extends State<TicketPage> {
                 child: Text(
                     ticket.isCompleted().toString().replaceAll("Status.", "")),
               )),
-              // DataCell(Icon(Icons.done))
-              // DataCell(
-              //   FloatingActionButton(
-              // onPressed: () => {
-              //   if (ticket.isCompleted() == Status.Incomplete)
-              //     {ticket.PENDING()}
-              //   else if (ticket.isCompleted() == Status.Pending)
-              //     {ticket.COMPLETE()}
-              // },
-              //   ),
-              // ),
+
             ]))
         .toList();
   }
+
+  
 }

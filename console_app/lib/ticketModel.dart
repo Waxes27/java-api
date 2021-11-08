@@ -16,7 +16,7 @@ class ticketModel extends ChangeNotifier {
   var problem;
   var id;
   var floor;
-  // var date;
+  var date;
   var campus;
   var status;
   List<ticketModel> tickets = [];
@@ -26,7 +26,7 @@ class ticketModel extends ChangeNotifier {
       this.userName,
       this.problem,
       this.floor,
-      // this.date,
+      this.date,
       this.campus,
       this.status});
 
@@ -37,7 +37,7 @@ class ticketModel extends ChangeNotifier {
         userName: json["username"],
         problem: json["issue"],
         floor: int.parse(json["floor"]),
-        // date: json["date"],
+        date: json["date"],
         campus: json["campus"],
         status: stuff(json['completed'].toLowerCase()));
     return newTicket;
@@ -48,7 +48,7 @@ class ticketModel extends ChangeNotifier {
   String getProblem() => this.problem;
   int getID() => this.id;
   Status isCompleted() => this.status;
-  // DateTime getCreationDate() => this.date;
+  String getCreationDate() => this.date;
 
   int getFloor() => this.floor;
 

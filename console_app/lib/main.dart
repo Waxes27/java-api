@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-final uri = "http://102.221.36.216:4444";
+final uri = "http://localhost:4444";
 void main() => runApp(ConsoleApp());
 
 class ConsoleApp extends StatelessWidget {
