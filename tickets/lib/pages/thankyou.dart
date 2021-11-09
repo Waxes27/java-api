@@ -8,12 +8,12 @@ class EndPage extends StatefulWidget {
 class EndPageState extends State<EndPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // backgroundColor: Colors.blue,
-      appBar: AppBar(title: _bar()),
-      body: const Center(
+    return const Scaffold(
+      // backgroundColor: Colors.blueAccent,
+      // appBar: AppBar(title: _bar()),
+      body: Center(
         child: Text(
-          "Your ticket has been lodged... Give it about 1 Hour to reach resolution",
+          "Your ticket has been lodged...",
           style: TextStyle(
             fontSize: 24,
             fontFamily: "aria",

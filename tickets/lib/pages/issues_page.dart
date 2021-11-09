@@ -31,28 +31,66 @@ class IssuesPageState extends State<IssuesPage> {
     }));
   }
 
+  String dropdownValue = 'n/a';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: _bar(),
-        ),
-        body: Container(
-            padding: const EdgeInsets.all(50.0),
-            child: Center(
-              child: TextField(
-                decoration: const InputDecoration(
-                    hintText: "What is the issue today?",
-                    contentPadding: EdgeInsets.all(24.0)),
-                onSubmitted: (text) {
-                  issueIn = text;
-                  // createIssue();
-                  // _goToThankYou();
-                  // Navigator.pop(context);
-                  _goToFloor();
-                },
-                autofocus: true,
+            title: const Center(
+              child: Text("What is the issue today?"),
+            ) 
+            ),
+        body: Center(
+          child: Column(
+            // padding: const EdgeInsets.all(50.0),
+
+            children: <Widget>[
+              const Padding(padding: EdgeInsets.all(50)),
+              Center(
+                child: DropdownButton<String>(
+                  value: dropdownValue,
+                  style: const TextStyle(color: Colors.deepPurple),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      print("$newValue $dropdownValue");
+                      dropdownValue = newValue!;
+                      // if (dropdownValue.toLowerCase()=="other"){
+                      //   setState(() {
+                      //     disabled = true;
+
+                      //   });
+                      // }
+                    });
+                  },
+                  items: <String>[
+                    'Hardware',
+                    'Software',
+                    'LMS',
+                    'General',
+                    'n/a'
+                  ].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
               ),
-            )));
+
+              const Padding(padding: EdgeInsets.all(50)),
+          
+              ElevatedButton(onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext constext) {
+                  return FloorPage();
+                }));
+              },
+              child: const Text("Continue")),
+
+            ])));
   }
 }

@@ -48,7 +48,7 @@ class HomePageState extends State<HomePage> {
   Future<http.Response> createIssue() async {
     String ip = "102.221.36.216";
     return await http.post(
-      Uri.parse('http://localhost:4444/tickets'),
+      Uri.parse('http://$ip:4444/tickets'),
       body: jsonEncode(<String, String>{
         "author": usernameIn,
         "issue": issueIn,
