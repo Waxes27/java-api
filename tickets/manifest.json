@@ -1,0 +1,9 @@
+{
+    "name": "WeThinkCode_",
+    "short_name": "WTC_",
+    "theme_color": "#2398f5",
+    "background_color": "#1896fa",
+    "display": "fullscreen",
+    "scope": "/",
+    "start_url": "/"
+  }

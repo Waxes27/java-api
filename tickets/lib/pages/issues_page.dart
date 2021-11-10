@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tickets/homepage.dart';
+import 'package:tickets/pages/campus.dart';
 import 'floor.dart';
 
 class IssuesPage extends StatefulWidget {
@@ -24,14 +25,14 @@ class IssuesPageState extends State<IssuesPage> {
     // ));
   }
 
-  void _goToFloor() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (BuildContext context) {
-      return _floor(context);
-    }));
-  }
+  // void _goToFloor() {
+  //   Navigator.of(context)
+  //       .push(MaterialPageRoute(builder: (BuildContext context) {
+  //     return _floor(context);
+  //   }));
+  // }
 
-  String dropdownValue = 'n/a';
+  String dropdownValue = 'Other';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,8 +71,8 @@ class IssuesPageState extends State<IssuesPage> {
                     'Hardware',
                     'Software',
                     'LMS',
-                    'General',
-                    'n/a'
+                    'Maintenance',
+                    'Other'
                   ].map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -86,7 +87,7 @@ class IssuesPageState extends State<IssuesPage> {
               ElevatedButton(onPressed: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (BuildContext constext) {
-                  return FloorPage();
+                  return CampusPage();
                 }));
               },
               child: const Text("Continue")),

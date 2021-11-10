@@ -8,10 +8,14 @@ class EndPage extends StatefulWidget {
 class EndPageState extends State<EndPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       // backgroundColor: Colors.blueAccent,
-      // appBar: AppBar(title: _bar()),
-      body: Center(
+      appBar: AppBar(
+        title: const Center(
+      child: Text("Welcome to the WeThinkCode_ Ticketing System"),
+    )),
+      body: Column(
+        children: const <Widget>[ Center(
         child: Text(
           "Your ticket has been lodged...",
           style: TextStyle(
@@ -20,6 +24,11 @@ class EndPageState extends State<EndPage> {
           ),
         ),
       ),
+
+
+      
+      ],
+    )
     );
   }
 }
