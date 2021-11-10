@@ -14,17 +14,33 @@ class TicketPage extends StatefulWidget {
 
 class TicketPageState extends State<TicketPage> {
 
-  Icon _color(ticket) {
+  Color? _color(ticket) {
     if (ticket.isCompleted() == Status.Incomplete) {
-      return Icon(Icons.unpublished  , color:Colors.red);
+      return Colors.red;
     } else if (ticket.isCompleted() == Status.Pending) {
-      return Icon(Icons.do_disturb_on_sharp  , color:Colors.amberAccent[400]);
+      return Colors.amberAccent[400];
     }
-    return Icon(Icons.check_circle  , color:Colors.limeAccent[700]);
-
-    //do_disturb_on_sharp 
-    //check_circle 
+    return Colors.limeAccent[700];
   }
+
+  IconData _iconData(ticket) {
+    if (ticket.getCategory() == "HARDWARE") {
+      return Icons.handyman_rounded;
+    } else if (ticket.getCategory() == "SOFTWARE") {
+      return Icons.computer;
+    } else if (ticket.getCategory() == "LMS") {
+      return Icons.cable_rounded;
+    }
+    return Icons.not_listed_location_rounded;
+  }
+
+  Icon _dynamicIcon(ticket) {
+    return Icon(_iconData(ticket), color: _color(ticket));
+  }
+
+
+    //do_disturb_on_sharp
+    //check_circle
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +64,7 @@ class TicketPageState extends State<TicketPage> {
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 onSort: (i, b) {}),
             DataColumn(
-                label: Text('ID',
+                label: Text('Reference',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 onSort: (i, b) {}),
@@ -93,8 +109,27 @@ class TicketPageState extends State<TicketPage> {
     // final ticketHandler handler = ticketHandler();
     return tickets
         .map((ticket) => DataRow(cells: [
-              DataCell(_color(ticket)),
-              DataCell(Text(ticket.getID().toString())),
+              DataCell(_dynamicIcon(ticket)),
+              DataCell(TextButton(
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                  overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.hovered))
+                        return Colors.blue.withOpacity(0.04);
+                      if (states.contains(MaterialState.focused) ||
+                          states.contains(MaterialState.pressed))
+                        return Colors.blue.withOpacity(0.12);
+                      return null; // Defer to the widget's default.
+                    },
+                  ),
+                ),
+                onPressed: () => {
+                  ////////////////////
+                },
+                child: Text(ticket.getRefID().toString()),
+              )),
               DataCell(Text(ticket.getUsername())),
               DataCell(Text(ticket.getCreationDate())),
               DataCell(Text(ticket.getCampus())),
@@ -144,10 +179,7 @@ class TicketPageState extends State<TicketPage> {
                 child: Text(
                     ticket.isCompleted().toString().replaceAll("Status.", "")),
               )),
-
             ]))
         .toList();
   }
-
-  
 }

@@ -20,42 +20,48 @@ class ticketModel extends ChangeNotifier {
   var date;
   var campus;
   var status;
+  var category;
   List<ticketModel> tickets = [];
 
   ticketModel(
-      {var id,
+      {
+      this.id,
       this.referenceId,
       this.userName,
       this.problem,
       this.floor,
       this.date,
       this.campus,
-      this.status
-      });
+      this.status,
+      this.category});
 
   factory ticketModel.fromJson(json) {
-    print(json);
+    print(json["id"]);
     var newTicket = ticketModel(
-        id: int.parse(json["referenceId"]),
+        id: int.parse(json["id"]),
         referenceId: int.parse(json["referenceId"]),
         userName: json["username"],
         problem: json["issue"],
         floor: int.parse(json["floor"]),
         date: json["date"],
         campus: json["campus"],
-        status: stuff(json['completed'].toLowerCase()));
+        status: stuff(json['completed'].toLowerCase()),
+        category: json['category']);
+
+    print(newTicket.getID());
     return newTicket;
   }
 
   String getUsername() => this.userName;
   String getCampus() => this.campus;
   String getProblem() => this.problem;
-  int getID() => this.referenceId;
-  // int getID() => this.referenceId;
+  int getID() => this.id;
+  int getRefID() => this.referenceId;
   Status isCompleted() => this.status;
   String getCreationDate() => this.date;
 
   int getFloor() => this.floor;
+  String getCategory() => this.category;
 
   void completeTicket() => this.status = Status.Completed;
   void startTicket() => this.status = Status.Pending;
