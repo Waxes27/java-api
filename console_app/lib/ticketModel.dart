@@ -14,6 +14,7 @@ Status stuff(String status) {
 class ticketModel extends ChangeNotifier {
   var userName;
   var problem;
+  var referenceId;
   var id;
   var floor;
   var date;
@@ -22,18 +23,21 @@ class ticketModel extends ChangeNotifier {
   List<ticketModel> tickets = [];
 
   ticketModel(
-      {this.id,
+      {var id,
+      this.referenceId,
       this.userName,
       this.problem,
       this.floor,
       this.date,
       this.campus,
-      this.status});
+      this.status
+      });
 
   factory ticketModel.fromJson(json) {
     print(json);
     var newTicket = ticketModel(
-        id: int.parse(json["id"]),
+        id: int.parse(json["referenceId"]),
+        referenceId: int.parse(json["referenceId"]),
         userName: json["username"],
         problem: json["issue"],
         floor: int.parse(json["floor"]),
@@ -46,7 +50,8 @@ class ticketModel extends ChangeNotifier {
   String getUsername() => this.userName;
   String getCampus() => this.campus;
   String getProblem() => this.problem;
-  int getID() => this.id;
+  int getID() => this.referenceId;
+  // int getID() => this.referenceId;
   Status isCompleted() => this.status;
   String getCreationDate() => this.date;
 

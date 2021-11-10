@@ -22,10 +22,11 @@ class ConsoleApp extends StatelessWidget {
 class _HomePage extends StatefulWidget {
   createState() => _HomePageState();
 }
-
 /*
 POST {ip}/ticket/update/{id}
 */
+
+
 class _HomePageState extends State<_HomePage> {
   final GlobalKey<TicketPageState> _key = GlobalKey();
 
@@ -60,7 +61,6 @@ class _HomePageState extends State<_HomePage> {
       );
     }));
   }
-  
 
   @override
   Widget build(BuildContext context) {
