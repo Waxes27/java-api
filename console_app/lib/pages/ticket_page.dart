@@ -13,23 +13,24 @@ class TicketPage extends StatefulWidget {
 }
 
 class TicketPageState extends State<TicketPage> {
-
   Color? _color(ticket) {
     if (ticket.isCompleted() == Status.Incomplete) {
       return Colors.red;
     } else if (ticket.isCompleted() == Status.Pending) {
-      return Colors.amberAccent[400];
+      return Colors.amber[600];
     }
-    return Colors.limeAccent[700];
+    return Colors.lightGreenAccent[400];
   }
 
   IconData _iconData(ticket) {
     if (ticket.getCategory() == "HARDWARE") {
-      return Icons.handyman_rounded;
+      return Icons.mouse;
     } else if (ticket.getCategory() == "SOFTWARE") {
-      return Icons.computer;
+      return Icons.adb_sharp;
     } else if (ticket.getCategory() == "LMS") {
       return Icons.cable_rounded;
+    } else if (ticket.getCategory() == "MAINTENENCE") {
+      return Icons.build_rounded;
     }
     return Icons.not_listed_location_rounded;
   }
@@ -38,9 +39,8 @@ class TicketPageState extends State<TicketPage> {
     return Icon(_iconData(ticket), color: _color(ticket));
   }
 
-
-    //do_disturb_on_sharp
-    //check_circle
+  //do_disturb_on_sharp
+  //check_circle
 
   @override
   Widget build(BuildContext context) {

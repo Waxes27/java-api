@@ -6,9 +6,9 @@ import 'pages/floor.dart';
 import 'pages/thankyou.dart';
 
 dynamic usernameIn;
-dynamic issueIn;
-dynamic campus;
-dynamic floor;
+// dynamic issueIn;
+// dynamic campus;
+// dynamic floor;
 
 class HomePage extends StatefulWidget {
   @override
@@ -51,7 +51,7 @@ class HomePageState extends State<HomePage> {
       Uri.parse('http://$ip:4444/tickets'),
       body: jsonEncode(<String, String>{
         "author": usernameIn,
-        "issue": issueIn,
+        "issue": issue,
         "campus": "JHB",
         "floor": floor,
       }),

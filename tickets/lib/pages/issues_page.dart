@@ -3,6 +3,7 @@ import 'package:tickets/homepage.dart';
 import 'package:tickets/pages/campus.dart';
 import 'floor.dart';
 
+  String issue = 'Other';
 class IssuesPage extends StatefulWidget {
   @override
   IssuesPageState createState() => IssuesPageState();
@@ -32,7 +33,6 @@ class IssuesPageState extends State<IssuesPage> {
   //   }));
   // }
 
-  String dropdownValue = 'Other';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +49,7 @@ class IssuesPageState extends State<IssuesPage> {
               const Padding(padding: EdgeInsets.all(50)),
               Center(
                 child: DropdownButton<String>(
-                  value: dropdownValue,
+                  value: issue,
                   style: const TextStyle(color: Colors.deepPurple),
                   underline: Container(
                     height: 2,
@@ -57,9 +57,9 @@ class IssuesPageState extends State<IssuesPage> {
                   ),
                   onChanged: (String? newValue) {
                     setState(() {
-                      print("$newValue $dropdownValue");
-                      dropdownValue = newValue!;
-                      // if (dropdownValue.toLowerCase()=="other"){
+                      print("$newValue $issue");
+                      issue = newValue!;
+                      // if (issue.toLowerCase()=="other"){
                       //   setState(() {
                       //     disabled = true;
 

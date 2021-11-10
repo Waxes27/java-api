@@ -8,10 +8,10 @@ class CampusPage extends StatefulWidget {
 }
 
 var otherIssue = "";
+String campus = 'n/a';
 
 class CampusPageState extends State<CampusPage> {
   bool disabled = false;
-  String dropdownValue = 'n/a';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,7 @@ class CampusPageState extends State<CampusPage> {
           const Padding(padding: EdgeInsets.all(50)),
           Center(
               child: DropdownButton<String>(
-            value: dropdownValue,
+            value: campus,
             style: const TextStyle(color: Colors.deepPurple),
             underline: Container(
               height: 2,
@@ -35,8 +35,8 @@ class CampusPageState extends State<CampusPage> {
             ),
             onChanged: (String? newValue) {
               setState(() {                
-                print("$newValue $dropdownValue");
-                dropdownValue = newValue!;
+                print("$newValue $campus");
+                campus = newValue!;
                 // if (dropdownValue.toLowerCase() == "other") {
                 //   setState(() {
                 //     disabled = true;

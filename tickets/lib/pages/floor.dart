@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tickets/pages/confirmation.dart';
 import 'thankyou.dart';
 
 class FloorPage extends StatefulWidget {
@@ -6,11 +7,11 @@ class FloorPage extends StatefulWidget {
   FloorPageState createState() => FloorPageState();
 }
 
-var otherIssue = "";
+
+String floor = 'n/a';
 
 class FloorPageState extends State<FloorPage> {
   bool disabled = false;
-  String dropdownValue = 'n/a';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +27,7 @@ class FloorPageState extends State<FloorPage> {
           const Padding(padding: EdgeInsets.all(50)),
           Center(
               child: DropdownButton<String>(
-            value: dropdownValue,
+            value: floor,
             style: const TextStyle(color: Colors.deepPurple),
             underline: Container(
               height: 2,
@@ -34,9 +35,9 @@ class FloorPageState extends State<FloorPage> {
             ),
             onChanged: (String? newValue) {
               setState(() {                
-                print("$newValue $dropdownValue");
-                dropdownValue = newValue!;
-                if (dropdownValue.toLowerCase() == "other") {
+                print("$newValue $floor");
+                floor = newValue!;
+                if (floor.toLowerCase() == "other") {
                   setState(() {
                     disabled = true;
                   });
@@ -63,10 +64,10 @@ class FloorPageState extends State<FloorPage> {
                 enabled: disabled,
               ),
               onSubmitted: (text) {
-                otherIssue = text;
+                floor = text;
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (BuildContext constext) {
-                  return EndPage();
+                  return ConfirmationPage();
                 }));
               },
             ),
@@ -75,7 +76,7 @@ class FloorPageState extends State<FloorPage> {
           ElevatedButton(onPressed: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (BuildContext constext) {
-                  return EndPage();
+                  return ConfirmationPage();
                 }));
               }, child: const Text("Continue"))
         ]
