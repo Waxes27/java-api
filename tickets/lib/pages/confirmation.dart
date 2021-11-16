@@ -11,8 +11,8 @@ import 'package:tickets/homepage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-// String ip = "102.221.36.216";
-String ip = "localhost";
+String ip = "102.221.36.216";
+// String ip = "localhost";
 
 String referenceId = "";
 class ConfirmationPage extends StatefulWidget{
