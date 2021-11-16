@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:tickets/pages/issues_page.dart';
 import 'dart:convert';
 import 'pages/floor.dart';
-import 'pages/thankyou.dart';
+import 'pages/endpage.dart';
 
 dynamic usernameIn;
 // dynamic issueIn;
@@ -45,18 +45,18 @@ class HomePageState extends State<HomePage> {
   //   }));
   // }
 
-  Future<http.Response> createIssue() async {
-    String ip = "102.221.36.216";
-    return await http.post(
-      Uri.parse('http://$ip:4444/tickets'),
-      body: jsonEncode(<String, String>{
-        "author": usernameIn,
-        "issue": issue,
-        "campus": "JHB",
-        "floor": floor,
-      }),
-    );
-  }
+  // Future<http.Response> createIssue() async {
+  //   String ip = "102.221.36.216";
+  //   return await http.post(
+  //     Uri.parse('http://$ip:4444/tickets'),
+  //     body: jsonEncode(<String, String>{
+  //       "author": usernameIn,
+  //       "issue": issue,
+  //       "campus": "JHB",
+  //       "floor": floor,
+  //     }),
+  //   );
+  // }
 
   Widget _floor(BuildContext context) {
     return FloorPage();

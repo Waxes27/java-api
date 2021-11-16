@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tickets/pages/floor.dart';
-import 'thankyou.dart';
+import 'endpage.dart';
 
 class CampusPage extends StatefulWidget {
   @override
@@ -8,7 +8,7 @@ class CampusPage extends StatefulWidget {
 }
 
 var otherIssue = "";
-String campus = 'n/a';
+String campus = 'JHB';
 
 class CampusPageState extends State<CampusPage> {
   bool disabled = false;
@@ -45,7 +45,7 @@ class CampusPageState extends State<CampusPage> {
               });
             },
 
-            items: <String>['JHB', 'CPT', 'DBN', 'n/a']
+            items: <String>['JHB', 'CPT', 'DBN']
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,

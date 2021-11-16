@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tickets/pages/confirmation.dart';
-import 'thankyou.dart';
+import 'endpage.dart';
 
 class FloorPage extends StatefulWidget {
   @override
@@ -8,7 +8,7 @@ class FloorPage extends StatefulWidget {
 }
 
 
-String floor = 'n/a';
+String floor = '4th';
 
 class FloorPageState extends State<FloorPage> {
   bool disabled = false;
@@ -45,7 +45,7 @@ class FloorPageState extends State<FloorPage> {
               });
             },
 
-            items: <String>['4th', '5th', '6th', 'n/a']
+            items: <String>['4th', '5th', '6th']
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,

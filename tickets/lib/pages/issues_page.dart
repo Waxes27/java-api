@@ -58,7 +58,7 @@ class IssuesPageState extends State<IssuesPage> {
                   onChanged: (String? newValue) {
                     setState(() {
                       print("$newValue $issue");
-                      issue = newValue!;
+                      issue = newValue!; 
                       // if (issue.toLowerCase()=="other"){
                       //   setState(() {
                       //     disabled = true;
