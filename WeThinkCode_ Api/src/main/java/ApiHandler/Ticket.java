@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import com.mysql.cj.xdevapi.DbDoc;
+
 
 public class Ticket implements TicketInterface{
 
@@ -32,6 +34,19 @@ public class Ticket implements TicketInterface{
     public Category getCategory(){
         return category;
     };
+
+    @Override
+    public String getTicketRefId(Context context) {
+        // System.out.println(context.body());
+        DBconnect dBconnect = new DBconnect();
+        try {
+            System.out.println(context.body());
+            dBconnect.getTicketId(context);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+        }
 
     @Override
     public long getReferenceId(){
@@ -150,7 +165,7 @@ public class Ticket implements TicketInterface{
         newTicket.setIssue(ticket.get("issue").toString());
         newTicket.setFloor(ticket.get("floor").toString());
         newTicket.completed(Completed.INCOMPLETE);
-        newTicket.setDate();
+        newTicket.setDate(context);
         newTicket.setReferenceId();
 
         switch (ticket.get("category").toString()){
@@ -192,8 +207,8 @@ public class Ticket implements TicketInterface{
                 "\"ticketId\":\"" + this.id + "\"," +
                 "\"completed\":\"" + this.complete + "\"," +
                 "\"floor\":\"" + this.floor + "\"," +
-                "\"date\":\"" + this.date + "\"" +
-                "\"category\":\"" + this.category + "\"" +
+                "\"date\":\"" + this.date + "\"," +
+                "\"category\":\"" + this.category + "\"," +
                 "\"referenceId\":\"" + this.referenceId + "\"" +
                 "}"
                 ;
@@ -228,11 +243,14 @@ public class Ticket implements TicketInterface{
     }
 
     @Override
-    public void setDate() {
-        Date dateTemp = new Date(System.currentTimeMillis());
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    public void setDate(Context context) {
+        // System.out.println("DATE CONTEXT: "+context);
+        JSONObject data = new JSONObject(context.body());
+        this.date = data.get("date").toString();
+        // Date dateTemp = new Date(System.currentTimeMillis());
+        // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         
-        this.date = formatter.format(dateTemp);
+        // this.date = formatter.format(dateTemp);
     }
 }

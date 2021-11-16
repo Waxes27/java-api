@@ -20,6 +20,7 @@ public class ApiServer {
         server.post("/tickets/drop/{id}", ApiServer::drop);
         server.post("/ticket/update/{id}/{status}", ApiServer::update);
         server.get("/tickets", ApiServer::getTickets);
+        server.post("/ticket", ApiServer::getTicket);
     }
 
     private static void resetCounter(Context context) throws SQLException {
@@ -40,7 +41,16 @@ public class ApiServer {
         context.json(tickets);
     }
 
-    private static void drop(Context context) throws Exception {
+
+    private static void getTicket(Context context){
+        Ticket ticket = new Ticket();
+        System.out.println("CONTEXT BEGIN:"+context.body());
+        String ticketRef = ticket.getTicketRefId(context);
+
+        context.json(ticketRef);
+    }
+
+    private static void drop(Context context) throws SQLException{
         Ticket ticket = new Ticket();
         try {
             ticket.dropTable(context);
@@ -53,7 +63,7 @@ public class ApiServer {
         context.json("Tables Dropped and created");
     }
 
-    private static void update(Context context) throws Exception {
+    private static void update(Context context) throws SQLException  {
         Ticket ticket = new Ticket();
         ticket.updateTicket(context);
 

@@ -22,6 +22,7 @@ public interface TicketInterface {
 
      int getTicketId();
 
+
      int getFloor();
 
      void setTicketId(int id);
@@ -48,7 +49,7 @@ public interface TicketInterface {
 
      String getDate();
 
-     void setDate();
+     void setDate(Context context);
 
      long getReferenceId();
 
@@ -57,4 +58,6 @@ public interface TicketInterface {
      void setCategory(Category value);
 
      Category getCategory();
+
+     String getTicketRefId(Context context);
 }

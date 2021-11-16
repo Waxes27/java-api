@@ -1,11 +1,7 @@
 package ApiHandler;
-//import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
-
 import io.javalin.http.Context;
 import org.json.JSONObject;
-
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
@@ -14,8 +10,7 @@ import java.sql.DriverManager;
 public class DBconnect {
     private Connection connect = null;
     private Statement statement = null;
-    private PreparedStatement preparedStatement = null;
-    private ResultSet resultSet = null;
+
 
 
     public Connection connection() throws SQLException {
@@ -25,62 +20,25 @@ public class DBconnect {
     }
 
 
-    public ResultSet readDataBase(
-    ) throws Exception {
-        try {
-            // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.jdbc.Driver");
-            // Setup the connection with the DB
+    public ResultSet readDataBase() throws SQLException {
+        
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             connect = connection();
 
-            // Statements allow to issue SQL queries to the database
             statement = connect.createStatement();
-            // Result set get the result of the SQL query
             return statement
                     .executeQuery("select * from tickets");
-//
-
-        } catch (Exception e) {
-            throw e;
-        } finally {
-//            close();
-        }
-
     }
 
-    private void close() {
-        try {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-
-            if (statement != null) {
-                statement.close();
-            }
-
-            if (connect != null) {
-                connect.close();
-            }
-        } catch (Exception e) {
-
-        }
-    }
     public void writeDatabase(Ticket ticket) throws SQLException {
         Connection connection = connection();
-        // INSERT INTO comments values (default, 'lars', 'myemail@gmail.com','https://www.vogella.com/', '2009-09-14 10:33:11', 'Summary','My first comment' );
-
         statement = connection.createStatement();
-        System.out.println("insert into tickets(username,campus,issue,completed,floor,date,category,reference_id) values ("
-        + "\"" + ticket.getTicketOwner()+"\","
-        + "\"" + ticket.getCampus()+ "\","
-        + "\"" + ticket.getIssue()+ "\","
-        + "\"" + ticket.completed(Completed.INCOMPLETE)+"\","
-        + "\"" + ticket.getFloor()+ "\","
-        + "\"" + ticket.getDate() + "\","
-        + "\"" + ticket.getCategory() + "\","
-        + "\"" + ticket.getReferenceId() + "\""
-        + ")"
-);
+
         statement.executeUpdate("insert into tickets(username,campus,issue,completed,floor,date,category,reference_id) values ("
                 + "\"" + ticket.getTicketOwner()+"\","
                 + "\"" + ticket.getCampus()+ "\","
@@ -92,18 +50,31 @@ public class DBconnect {
                 + "\"" + ticket.getReferenceId() + "\""
                 + ")"
         );
-        System.out.println(ticket.getCategory());
         connection.close();
+    }
+
+    public void getTicketId(Context context) throws SQLException{
+        Connection connection = connection();
+        statement = connection.createStatement();
+
+
+        JSONObject data =  new JSONObject(context.body());
+        ResultSet setOfdata = statement.executeQuery("select * from tickets where date=\""+data.get("date")+"\";");
+        
+        while (setOfdata.next()){
+            context.json(setOfdata.getString(9));
+            break;
+        }
+        
+
     }
 
     public void updateDatabase(Context context) throws SQLException {
         Connection connection = connection();
         String status = context.pathParam("status");
         String id = context.pathParam("id");
-        // INSERT INTO comments values (default, 'lars', 'myemail@gmail.com','https://www.vogella.com/', '2009-09-14 10:33:11', 'Summary','My first comment' );
 
         statement = connection.createStatement();
-        System.out.println("update tickets set completed="+status+" where id="+id);
         statement.executeUpdate("update tickets set completed='"+status.toUpperCase()+"' where id='"+id+"'");
 
         context.json("Ticket "+id+":\n has been updated to "+status);
@@ -112,7 +83,6 @@ public class DBconnect {
 
     public void resetCounter(int id, Context context) throws SQLException {
         Connection connection = connection();
-        // INSERT INTO comments values (default, 'lars', 'myemail@gmail.com','https://www.vogella.com/', '2009-09-14 10:33:11', 'Summary','My first comment' );
         JSONObject query = new JSONObject(context.body());
 
         statement = connection.createStatement();
@@ -139,31 +109,16 @@ public class DBconnect {
                 "issue VARCHAR("+id+") NOT NULL," +
                 "completed VARCHAR(15),"+
                 "floor INT,"+
-                "date VARCHAR(20)," +
+                "date VARCHAR(30)," +
                 "category VARCHAR(10)," +
                 "reference_id VARCHAR(20) UNIQUE," +
                 "primary key(id))"
         );
-        System.out.println("create table tickets (id INT NOT NULL AUTO_INCREMENT," +
-        "username VARCHAR(30) NOT NULL," +
-        "campus VARCHAR(30) NOT NULL," +
-        "issue VARCHAR("+id+") NOT NULL," +
-        "completed VARCHAR(15),"+
-        "floor INT,"+
-        "date VARCHAR(20)," +
-        "category VARCHAR(10)," +
-        "reference_id VARCHAR(6) UNIQUE," +
-        "primary key(id))"
-);
-
-
         connection.close();
     }
 
     public void dropTables(Context context) throws SQLException {
         Connection connection = connection();
-        // INSERT INTO comments values (default, 'lars', 'myemail@gmail.com','https://www.vogella.com/', '2009-09-14 10:33:11', 'Summary','My first comment' );
-
         statement = connection.createStatement();
         try {
             statement.executeUpdate("drop table tickets");
