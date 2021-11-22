@@ -53,6 +53,8 @@ class EndPageState extends State<EndPage> {
                               ),
                               const Padding(padding: EdgeInsets.symmetric(vertical: 30)),
                               Text("Reference ID: ${snapshot.data.toString()}"),
+                              const Padding(padding: EdgeInsets.symmetric(vertical: 30)),
+                              Text("You will recieve an email to $usernameIn@student.wethinkcode.co.za"),
                             ],),
                             leading: const Icon(Icons.perm_identity),
                             ),
