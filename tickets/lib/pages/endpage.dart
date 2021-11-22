@@ -64,8 +64,9 @@ class EndPageState extends State<EndPage> {
                         ],), 
                     )));
                   } else {
-                    return const CircularProgressIndicator.adaptive();
-                  }
+                    return const Center(
+                      child: CircularProgressIndicator.adaptive(),
+                    );}
                 }),
 
             // const Padding(padding: EdgeInsets.all(80)),
