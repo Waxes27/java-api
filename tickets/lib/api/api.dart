@@ -5,8 +5,8 @@ import 'dart:convert';
 
 var now = DateTime.now();
 
-// String ip = "102.221.36.216";
-String ip = "localhost";
+String ip = "102.221.36.216";
+// String ip = "localhost";
 
 Future createIssue(username, userIssue, userCampus, userFloor) async {
     print(now); // 2016-01-25
