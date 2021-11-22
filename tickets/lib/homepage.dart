@@ -31,47 +31,8 @@ class HomePageState extends State<HomePage> {
     }));
   }
 
-  // void _goToThankYou() {
-  //   Navigator.of(context)
-  //       .push(MaterialPageRoute(builder: (BuildContext context) {
-  //     return _thankYou(context);
-  //   }));
-  // }
-
-  // void _goToFloor() {
-  //   Navigator.of(context)
-  //       .push(MaterialPageRoute(builder: (BuildContext context) {
-  //     return _floor(context);
-  //   }));
-  // }
-
-  // Future<http.Response> createIssue() async {
-  //   String ip = "102.221.36.216";
-  //   return await http.post(
-  //     Uri.parse('http://$ip:4444/tickets'),
-  //     body: jsonEncode(<String, String>{
-  //       "author": usernameIn,
-  //       "issue": issue,
-  //       "campus": "JHB",
-  //       "floor": floor,
-  //     }),
-  //   );
-  // }
-
   Widget _floor(BuildContext context) {
     return FloorPage();
-
-    // child: TextField(
-    //   decoration: const InputDecoration(
-    //     hintText: "What is your floor number? (e.g. 4)",
-    //     contentPadding: EdgeInsets.all(24.0)),
-    //   onSubmitted: (text) {
-    //     floor = text;
-    //     _goToThankYou();
-    //     createIssue();
-    //   },
-    // ),
-    // ));
   }
 
   Widget _bar() {
@@ -84,19 +45,6 @@ class HomePageState extends State<HomePage> {
   Widget _thankYou(BuildContext context) {
     return EndPage();
   }
-  // return Scaffold(
-  //   backgroundColor: Colors.blue,
-  //   appBar: AppBar(title: _bar()),
-  //   body: const Center(
-  //     child: Text(
-  //       "Your ticket has been lodged... Give it about 1 Hour to reach resolution",
-  //       style: TextStyle(
-  //         fontSize: 24,
-  //         fontFamily: "aria",
-  //       ),
-  //     ),
-  //   ),
-  // );
 
   Widget _homePageBody(BuildContext context) {
     return Scaffold(
@@ -108,10 +56,7 @@ class HomePageState extends State<HomePage> {
                     hintText: "Enter Username",
                     contentPadding: EdgeInsets.all(24.0)),
                 onSubmitted: (text) {
-                  String qwer = '[{"campus":"JHB"},{"campus":"CPT"}]';
-                  print(json.decode(qwer)[0]);
                   usernameIn = text;
-                  // Navigator.pop(context);
                   _goToIssues();
                 },
                 autofocus: true,
