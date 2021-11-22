@@ -27,9 +27,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
+    - name: Pull from Git
+      run: git pull
     - name: Flutter Build
       run: cd /home/deploy/java-api/tickets/ && flutter build web --web-renderer
     - name: Copy to /var/www/html
-      run: pwd
-    
-    
+      run: cp /home/deploy/java-api/tickets/build/web/* -r /var/www/html/
