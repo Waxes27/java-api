@@ -30,6 +30,6 @@ jobs:
     - name: Pull from Git
       run: git pull
     - name: Flutter Build
-      run: cd /home/deploy/java-api/tickets/ && flutter build web --web-renderer
+      run: cd /home/deploy/java-api/tickets/ && flutter build web --web-renderer html
     - name: Copy to /var/www/html
       run: cp /home/deploy/java-api/tickets/build/web/* -r /var/www/html/
