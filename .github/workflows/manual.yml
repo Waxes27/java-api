@@ -28,6 +28,8 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Flutter Build
+      run: cd /home/deploy/java-api/tickets/ && flutter build web --web-renderer
+    - name: Copy to /var/www/html
       run: pwd
     
     
