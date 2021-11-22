@@ -59,9 +59,11 @@ public class DBconnect {
 
 
         JSONObject data =  new JSONObject(context.body());
+        System.out.println("CONTEXT IN TICKET ID: "+data);
         ResultSet setOfdata = statement.executeQuery("select * from tickets where date=\""+data.get("date")+"\";");
         
         while (setOfdata.next()){
+            System.out.println(setOfdata.getString(9));
             context.json(setOfdata.getString(9));
             break;
         }

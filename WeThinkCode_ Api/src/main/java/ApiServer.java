@@ -44,8 +44,9 @@ public class ApiServer {
 
     private static void getTicket(Context context){
         Ticket ticket = new Ticket();
-        System.out.println("CONTEXT BEGIN:"+context.body());
+        
         String ticketRef = ticket.getTicketRefId(context);
+        System.out.println(ticketRef);
 
         context.json(ticketRef);
     }
