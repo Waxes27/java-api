@@ -28,15 +28,179 @@ POST {ip}/ticket/update/{id}
 
 
 class _HomePageState extends State<_HomePage> {
-  final GlobalKey<TicketPageState> _key = GlobalKey();
+  // final GlobalKey<TicketPageState> _key = GlobalKey();
+  late Future<List<ticketModel>> data;
 
-  void fetchTickets() async {
+  Color? _color(ticket) {
+    if (ticket.isCompleted() == Status.INCOMPLETED) {
+      return Colors.red;
+    } else if (ticket.isCompleted() == Status.PENDING) {
+      return Colors.amber[600];
+    }
+    return Colors.lightGreenAccent[400];
+  }
+
+  IconData _iconData(ticket) {
+    if (ticket.getCategory() == "HARDWARE") {
+      return Icons.mouse;
+    } else if (ticket.getCategory() == "SOFTWARE") {
+      return Icons.adb_sharp;
+    } else if (ticket.getCategory() == "LMS") {
+      // return Icons.cable_rounded;
+      return Icons.code;
+    } else if (ticket.getCategory() == "MAINTENENCE") {
+      return Icons.build_rounded;
+    }
+    return Icons.not_listed_location_rounded;
+  }
+
+  Icon _dynamicIcon(ticket) {
+    return Icon(_iconData(ticket), color: _color(ticket));
+  }
+
+    SingleChildScrollView _dataTable(tickets) {
+    return SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: DataTable(
+          sortColumnIndex: 0,
+          sortAscending: true,
+          columns: [
+             DataColumn(
+                label: Container(child: 
+                        Flexible(fit: FlexFit.tight, 
+                        child: Text('',
+                                style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+                onSort: (i, b) {}),
+             DataColumn(
+                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Reference',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+                onSort: (i, b) {}),
+             DataColumn(
+                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Username',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+                onSort: (i, b) {}),
+             DataColumn(
+                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Date',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+                onSort: (i, b) {}),
+             DataColumn(
+                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Campus',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+                onSort: (i, b) {}),
+             DataColumn(
+                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Floor',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+                onSort: (i, b) {}),
+             DataColumn(
+                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Issue',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+                onSort: (i, b) {}),
+             DataColumn(
+                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Status',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+                onSort: (i, b) {}),
+          ],
+          rows: _buildrows(tickets),
+        ));
+  }
+
+  List<DataRow> _buildrows(List tickets) {
+    // tickets = data.getTickets();
+    print("THESE ARE THE TICKETS: $tickets");
+    // final ticketHandler handler = ticketHandler();
+    return tickets
+        .map((ticket) => DataRow(cells: [
+              DataCell(_dynamicIcon(ticket)),
+              DataCell(TextButton(
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                  overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.hovered))
+                        return Colors.blue.withOpacity(0.04);
+                      if (states.contains(MaterialState.focused) ||
+                          states.contains(MaterialState.pressed))
+                        return Colors.blue.withOpacity(0.12);
+                      return null; // Defer to the widget's default.
+                    },
+                  ),
+                ),
+                onPressed: () => {
+                  ////////////////////
+                },
+                child: Text(ticket.getRefID().toString()),
+              )),
+              DataCell(Text(ticket.getUsername())),
+              DataCell(Text(ticket.getCreationDate())),
+              DataCell(Text(ticket.getCampus())),
+              DataCell(Text("${ticket.getFloor()}")),
+              DataCell(Text(ticket.getProblem())),
+              DataCell(TextButton(
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                  overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.hovered))
+                        return Colors.blue.withOpacity(0.04);
+                      if (states.contains(MaterialState.focused) ||
+                          states.contains(MaterialState.pressed))
+                        return Colors.blue.withOpacity(0.12);
+                      return null; // Defer to the widget's default.
+                    },
+                  ),
+                ),
+                onPressed: () => {
+                  if (ticket.isCompleted() == Status.INCOMPLETED)
+                    {
+                      setState(() {
+                        ticket.pending();
+                        editTicket(
+                            ticket.getID(),
+                            ticket
+                                .isCompleted()
+                                .toString()
+                                .replaceAll("Status.", ''));
+                      })
+                    }
+                  else if (ticket.isCompleted() == Status.PENDING)
+                    {
+                      setState(() {
+                        ticket.complete();
+                        editTicket(
+                            ticket.getID(),
+                            ticket
+                                .isCompleted()
+                                .toString()
+                                .replaceAll("Status.", ''));
+                      })
+                    }
+                },
+                child: Text(
+                    ticket.isCompleted().toString().replaceAll("Status.", "")),
+              )),
+            ]))
+        .toList();
+  }
+  Future<List<ticketModel>> fetchTickets() async {
     final response = await http.get(Uri.parse("$uri/tickets"));
+    List<ticketModel> _data = [];
+    // return response.body;
     List jsonOb = await json.decode(response.body);
     for (var item in jsonOb) {
       print(item);
-      data.addTicket(ticketModel.fromJson(item));
+      _data.add(ticketModel.fromJson(item));
     }
+    return _data;
   }
 
   void editTicket(id, status) async {
@@ -47,20 +211,19 @@ class _HomePageState extends State<_HomePage> {
   @override
   void initState() {
     super.initState();
-    fetchTickets();
+    data = fetchTickets();
   }
 
-  final data = ticketModel();
-
-  void _goToTickets() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (BuildContext context) {
-      return TicketPage(
-        tickets: data.getTickets(),
-        editTicket: editTicket,
-      );
-    }));
-  }
+  // void _goToTickets() {
+  //   Navigator.of(context)
+  //       .push(MaterialPageRoute(builder: (BuildContext context) {
+  //     return TicketPage(
+  //       tickets: data.getTickets(),
+  //       editTicket: editTicket,
+  //     );
+  //   }));
+  // }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +231,32 @@ class _HomePageState extends State<_HomePage> {
         appBar: AppBar(
           title: Text("Console"),
         ),
-        body: Center(
-          child: ElevatedButton(
-            child: Text("Go to tickets page."),
-            onPressed: () {
-              _goToTickets();
-            },
-          ),
-        ));
-  }
+        body: FutureBuilder(
+          future: data,
+          initialData: [],
+          builder: (context, snapshot){
+          if (snapshot.hasError) {
+          return const Center(child: Text('An Error Occurred'));
+          }
+          else if (snapshot.hasData) {
+         
+          return _dataTable(snapshot.data);
+          }
+          else {
+	
+        return Text('State: ${snapshot.connectionState}');
+	
+      }
+          }
+    ));
 }
+    }
+        
+        // Center(
+        //   child: ElevatedButton(
+        //     child: Text("Go to tickets page."),
+        //     onPressed: () {
+        //       _goToTickets();
+        //     },
+        //   ),
+        // ));
