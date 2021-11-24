@@ -3,7 +3,7 @@ import './campus.dart';
 import 'package:tickets/homepage.dart';
 import 'package:tickets/api/api.dart';
 import 'floor.dart';
-import 'issues_page.dart';
+import 'category.dart';
 
 class EndPage extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class EndPageState extends State<EndPage> {
 
             const Padding(padding: EdgeInsets.all(50)),
             FutureBuilder(
-                future: createIssue(usernameIn, issue, campus, floor),
+                future: createIssue(usernameIn, category, campus, floor),
                 builder: (BuildContext context, snapshot) {
                   if (snapshot.hasData) {
                     

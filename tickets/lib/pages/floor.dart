@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tickets/pages/campus.dart';
 import 'package:tickets/pages/confirmation.dart';
-import 'endpage.dart';
 
 class FloorPage extends StatefulWidget {
   @override
   FloorPageState createState() => FloorPageState();
 }
 
-String default_floor() {
+String defaultFloor() {
   switch (campus.toLowerCase()) {
     case "jhb":
       return "4th";
@@ -22,7 +21,7 @@ String default_floor() {
   }
 }
 
-String floor = default_floor();
+String floor = defaultFloor();
 
 class FloorPageState extends State<FloorPage> {
   bool disabled = false;

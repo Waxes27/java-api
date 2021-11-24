@@ -3,7 +3,7 @@ import 'package:tickets/homepage.dart';
 import 'package:tickets/pages/campus.dart';
 import 'floor.dart';
 
-  String issue = 'Other';
+String category = 'Other';
 class IssuesPage extends StatefulWidget {
   @override
   IssuesPageState createState() => IssuesPageState();
@@ -49,7 +49,7 @@ class IssuesPageState extends State<IssuesPage> {
               const Padding(padding: EdgeInsets.all(50)),
               Center(
                 child: DropdownButton<String>(
-                  value: issue,
+                  value: category,
                   style: const TextStyle(color: Colors.deepPurple),
                   underline: Container(
                     height: 2,
@@ -57,8 +57,8 @@ class IssuesPageState extends State<IssuesPage> {
                   ),
                   onChanged: (String? newValue) {
                     setState(() {
-                      print("$newValue $issue");
-                      issue = newValue!; 
+                      print("$newValue $category");
+                      category = newValue!; 
                       // if (issue.toLowerCase()=="other"){
                       //   setState(() {
                       //     disabled = true;

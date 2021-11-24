@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:tickets/pages/issues_page.dart';
-import 'dart:convert';
+import 'package:tickets/pages/category.dart';
+import 'package:tickets/pages/tickets.dart';
 import 'pages/floor.dart';
 import 'pages/endpage.dart';
 
@@ -23,7 +22,12 @@ class HomePageState extends State<HomePage> {
       body: _homePageBody(context),
     );
   }
-
+  void _goToTickets(){
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (BuildContext context) {
+      return Tickets();
+    }));
+  }
   void _goToIssues() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {

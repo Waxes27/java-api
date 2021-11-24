@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:tickets/pages/endpage.dart';
 import 'campus.dart';
 import 'floor.dart';
-import 'issues_page.dart';
+import 'category.dart';
 import 'package:tickets/homepage.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:tickets/api/api.dart';
+
 
 var now = DateTime.now();
 // String referenceId = "";
@@ -18,7 +15,7 @@ class ConfirmationPage extends StatefulWidget {
 }
 
 class ConfirmationPageState extends State<ConfirmationPage> {
-  final List<String> listOfData = [usernameIn, issue, campus, floor, ""];
+  final List<String> listOfData = [usernameIn, category, campus, floor, ""];
 
   
 
