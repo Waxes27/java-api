@@ -38,7 +38,7 @@ class HomePageState extends State<HomePage> {
   Widget _bar() {
     return AppBar(
         title: const Center(
-      child: Text("Welcome to the WeThinkCode_ Ticketing System"),
+      child: Text("WeThinkCode_ Ticketing"),
     ));
   }
 

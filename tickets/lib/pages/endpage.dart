@@ -19,9 +19,9 @@ class EndPageState extends State<EndPage> {
         // backgroundColor: Colors.blueAccent,
         appBar: AppBar(
             title: const Center(
-          child: Text("Welcome to the WeThinkCode_ Ticketing System"),
+          child: Text("WeThinkCode_ Ticketing"),
         )),
-        body: Column(
+        body: SingleChildScrollView( child:Column(
           children: <Widget>[
             
 
@@ -35,16 +35,16 @@ class EndPageState extends State<EndPage> {
                       child: Flexible(
                         fit: FlexFit.loose,
                         child: Card(
-                        elevation: 500,
                         shadowColor: Colors.blue,
-                        child: Column(children: <Widget>[
+                        child: SingleChildScrollView( child:
+                        Column(
+                          children: <Widget>[
                           const Padding(padding: EdgeInsets.all(50)),
                           ListTile(
-                            hoverColor: Colors.blue,
-                            title: Column(children: <Widget>[
+                            title: SingleChildScrollView( child:Column(children: <Widget>[
                               const Center(
                                 child: Text(
-                                  "Your ticket has been logged... Here are your details",
+                                  "Your ticket has been logged with these details.",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: "aria",
@@ -54,15 +54,15 @@ class EndPageState extends State<EndPage> {
                               const Padding(padding: EdgeInsets.symmetric(vertical: 30)),
                               Text("Reference ID: ${snapshot.data.toString()}"),
                               const Padding(padding: EdgeInsets.symmetric(vertical: 30)),
-                              Text("You will recieve an email to $usernameIn@student.wethinkcode.co.za"),
-                            ],),
+                              Text("You will recieve an email on $usernameIn@student.wethinkcode.co.za"),
+                            ],)),
                             leading: const Icon(Icons.perm_identity),
                             ),
                           // Text("Reference ID: ${snapshot.data.toString()}"),
                           const Padding(padding: EdgeInsets.all(50)),
 
                         ],), 
-                    )));
+                    ))));
                   } else {
                     return const Center(
                       child: CircularProgressIndicator.adaptive(),
@@ -73,6 +73,6 @@ class EndPageState extends State<EndPage> {
 
             // Text("Your your reference number is: ")
           ],
-        ));
+        )));
   }
 }

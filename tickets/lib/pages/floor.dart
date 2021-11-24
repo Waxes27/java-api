@@ -17,7 +17,7 @@ class FloorPageState extends State<FloorPage> {
     return Scaffold(
         appBar: AppBar(
             title: const Center(
-              child: Text("Please enter your floor number?"),
+              child: Text("Whats's your floor number?"),
             ) 
             ),
         body: Column(
