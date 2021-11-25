@@ -1,6 +1,8 @@
+import ApiHandler.DBconnect;
 import ApiHandler.Ticket;
 // import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import io.javalin.Javalin;
 import io.javalin.core.JavalinConfig;
@@ -8,6 +10,8 @@ import io.javalin.http.Context;
 
 import java.util.HashMap;
 import java.util.List;
+
+import com.mysql.cj.xdevapi.Result;
 
 public class ApiServer {
 
@@ -20,6 +24,7 @@ public class ApiServer {
         server.post("/tickets/drop/{id}", ApiServer::drop);
         server.post("/ticket/update/{id}/{status}", ApiServer::update);
         server.get("/tickets", ApiServer::getTickets);
+        server.get("/tickets/{user}", ApiServer::getUserTickets);
         server.post("/ticket", ApiServer::getTicket);
     }
 
@@ -49,6 +54,14 @@ public class ApiServer {
         System.out.println(ticketRef);
 
         context.json(ticketRef);
+    }
+
+    private static void getUserTickets(Context context) throws SQLException{
+        Ticket ticket = new Ticket();
+
+        context.json(ticket.getUserTickets(context));
+
+
     }
 
     private static void drop(Context context) throws SQLException{

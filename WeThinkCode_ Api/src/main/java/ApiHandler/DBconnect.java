@@ -20,6 +20,24 @@ public class DBconnect {
     }
 
 
+    public ResultSet readDataBaseForUserTickets(String username) throws SQLException {
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        connect = connection();
+
+        statement = connect.createStatement();
+        return statement
+                .executeQuery("select * from tickets where username='"+username+"'");
+}
+
+
+
+
     public ResultSet readDataBase() throws SQLException {
         
             try {

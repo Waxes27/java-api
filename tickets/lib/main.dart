@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'homepage.dart';
+import 'pages/homepage.dart';
+import 'pages/tickets.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue
         ),
       title: "WTC Ticketing",
-      home: HomePage(),
+      home: Tickets(),
     );
   }
 }

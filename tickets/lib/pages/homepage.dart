@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tickets/pages/category.dart';
 import 'package:tickets/pages/tickets.dart';
-import 'pages/floor.dart';
-import 'pages/endpage.dart';
+import 'floor.dart';
+import 'endpage.dart';
 
 dynamic usernameIn;
 // dynamic issueIn;
