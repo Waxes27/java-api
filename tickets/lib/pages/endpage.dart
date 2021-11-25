@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './campus.dart';
-import 'package:tickets/homepage.dart';
+import 'package:tickets/pages/homepage.dart';
 import 'package:tickets/api/api.dart';
 import 'floor.dart';
 import 'category.dart';

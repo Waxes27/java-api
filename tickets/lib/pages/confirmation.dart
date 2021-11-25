@@ -3,7 +3,7 @@ import 'package:tickets/pages/endpage.dart';
 import 'campus.dart';
 import 'floor.dart';
 import 'category.dart';
-import 'package:tickets/homepage.dart';
+import 'package:tickets/pages/homepage.dart';
 
 
 var now = DateTime.now();

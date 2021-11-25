@@ -154,6 +154,27 @@ public class Ticket implements TicketInterface{
         this.issue = issue;
     }
 
+    public List<HashMap<String,String>> getUserTickets(Context context) throws SQLException{
+        String username = context.pathParam("user");
+        List<HashMap<String,String>> tickets = new ArrayList<>();
+        DBconnect connection = new DBconnect();
+        ResultSet data = connection.readDataBaseForUserTickets(username);
+        while (data.next()){
+            tickets.add(serializeTicket(
+                data.getString(1)
+                , data.getString(2)
+                , data.getString(3)
+                , data.getString(4)
+                , data.getString(5)
+                ,data.getString(6)
+                ,data.getString(7)
+                ,data.getString(8)
+                ,data.getString(9)));
+        }
+        
+        return tickets;
+    }
+
     @Override
     public Ticket setAll(String command, Context context) throws Exception {
         Ticket newTicket = new Ticket();

@@ -7,8 +7,8 @@ var now = DateTime.now();
 final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm');
 final String formatted = formatter.format(now);
 
-String ip = "102.221.36.216";
-// String ip = "localhost";
+// String ip = "102.221.36.216";
+String ip = "localhost";
 
 Future createIssue(username, userIssue, userCampus, userFloor) async {
   print(now); // 2016-01-25
