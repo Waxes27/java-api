@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
-enum Status { Completed, Pending, Incomplete }
+enum Status { COMPLETED, PENDING, INCOMPLETED }
 
 Status stuff(String status) {
   dynamic states = {
-    "incomplete": Status.Incomplete,
-    "pending": Status.Pending,
-    "completed": Status.Completed
+    "incomplete": Status.INCOMPLETED,
+    "pending": Status.PENDING,
+    "completed": Status.COMPLETED
   };
   return states[status];
 }
@@ -36,7 +36,7 @@ class ticketModel extends ChangeNotifier {
       this.category});
 
   factory ticketModel.fromJson(json) {
-    print(json["id"]);
+    print(json);
     var newTicket = ticketModel(
         id: int.parse(json["id"]),
         referenceId: int.parse(json["referenceId"]),
@@ -63,8 +63,8 @@ class ticketModel extends ChangeNotifier {
   int getFloor() => this.floor;
   String getCategory() => this.category;
 
-  void completeTicket() => this.status = Status.Completed;
-  void startTicket() => this.status = Status.Pending;
+  void completeTicket() => this.status = Status.COMPLETED;
+  void startTicket() => this.status = Status.PENDING;
 
   void addTicket(ticketModel ticket) {
     this.tickets.add(ticket);
@@ -86,12 +86,12 @@ class ticketModel extends ChangeNotifier {
   }
 
   void pending() {
-    this.status = Status.Pending;
+    this.status = Status.PENDING;
     notifyListeners();
   }
 
   void complete() {
-    this.status = Status.Completed;
+    this.status = Status.COMPLETED;
     notifyListeners();
   }
 
