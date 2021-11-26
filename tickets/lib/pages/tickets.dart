@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tickets/api/models/ticket.dart';
 import 'package:tickets/pages/homepage.dart';
 import 'package:tickets/api/api.dart';
-import 'category.dart';
+import 'issues.dart';
 
 class Tickets extends StatefulWidget {
   const Tickets({Key? key}) : super(key: key);

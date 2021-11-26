@@ -4,7 +4,7 @@ import 'package:tickets/pages/campus.dart';
 import 'floor.dart';
 
 String issue = "";
-String category = '';
+String category = 'Other';
 
 class IssuesPage extends StatefulWidget {
   @override
@@ -62,7 +62,6 @@ class IssuesPageState extends State<IssuesPage> {
                     'LMS',
                     'Maintenance',
                     'Other',
-                    ''
                   ].map<DropdownMenuItem<String>>((String value) {
                     category = value;
                     return DropdownMenuItem<String>(

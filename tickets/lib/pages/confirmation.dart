@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tickets/pages/endpage.dart';
 import 'campus.dart';
 import 'floor.dart';
-import 'category.dart';
+import 'issues.dart';
 import 'package:tickets/pages/homepage.dart';
 
 var now = DateTime.now();

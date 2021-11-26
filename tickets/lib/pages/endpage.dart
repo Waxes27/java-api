@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tickets/pages/tickets.dart';
 import './campus.dart';
 import 'package:tickets/pages/homepage.dart';
 import 'package:tickets/api/api.dart';
 import 'floor.dart';
-import 'category.dart';
+import 'issues.dart';
 
 class EndPage extends StatefulWidget {
   @override
@@ -62,6 +63,22 @@ class EndPageState extends State<EndPage> {
                                                     vertical: 30)),
                                             Text(
                                                 "You will recieve an email on $usernameIn@student.wethinkcode.co.za"),
+                                            const Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 30)),
+                                            ElevatedButton.icon(
+                                                onPressed: () {
+                                                  Navigator.of(context)
+                                                      .pushAndRemoveUntil(
+                                                          MaterialPageRoute(
+                                                              builder:
+                                                                  (context) {
+                                                    return const Tickets();
+                                                  }), (route) => false);
+                                                  // Navigator.of(context).popUntil((route) => route.isFirst);
+                                                },
+                                                icon: Icon(Icons.home),
+                                                label: Text("Return Home"))
                                           ],
                                         )),
                                         leading: const Icon(

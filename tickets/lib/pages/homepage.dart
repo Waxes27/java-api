@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tickets/pages/category.dart';
+import 'package:tickets/pages/issues.dart';
 import 'package:tickets/pages/tickets.dart';
 import 'floor.dart';
 import 'endpage.dart';
