@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 enum Status { COMPLETED, PENDING, INCOMPLETED }
 
-Status stuff(String status) {
+Status getCategoryEnum(String status) {
   dynamic states = {
     "incomplete": Status.INCOMPLETED,
     "pending": Status.PENDING,
@@ -45,7 +45,7 @@ class ticketModel extends ChangeNotifier {
         floor: int.parse(json["floor"]),
         date: json["date"],
         campus: json["campus"],
-        status: stuff(json['completed'].toLowerCase()),
+        status: getCategoryEnum(json['completed'].toLowerCase()),
         category: json['category']);
 
     print(newTicket.getID());
