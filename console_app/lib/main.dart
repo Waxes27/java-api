@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'pages/details_page.dart';
 
 final ip = "102.221.36.216";
 final uri = "http://$ip:4444";
@@ -135,6 +136,7 @@ class _HomePageState extends State<_HomePage> {
                   ),
                 ),
                 onPressed: () => {
+                  _goToTicketsDetails(ticket)
                   ////////////////////
                 },
                 child: Text(ticket.getRefID().toString()),
@@ -214,22 +216,22 @@ class _HomePageState extends State<_HomePage> {
     data = fetchTickets();
   }
 
-  // void _goToTickets() {
-  //   Navigator.of(context)
-  //       .push(MaterialPageRoute(builder: (BuildContext context) {
-  //     return TicketPage(
-  //       tickets: data.getTickets(),
-  //       editTicket: editTicket,
-  //     );
-  //   }));
-  // }
+  void _goToTicketsDetails(ticketModel ticket) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (BuildContext context) {
+      return DeatailsPage(
+        ticket: ticket, 
+        dynamicIcon: _dynamicIcon,
+        dynamicColor: _color,);
+    }));
+  }
   
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Console"),
+          title: Center(child: Text("C O N S O L E")),
         ),
         body: FutureBuilder(
           future: data,
