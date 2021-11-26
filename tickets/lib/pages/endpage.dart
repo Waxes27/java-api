@@ -27,7 +27,7 @@ class EndPageState extends State<EndPage> {
 
             const Padding(padding: EdgeInsets.all(50)),
             FutureBuilder(
-                future: createIssue(usernameIn, category, campus, floor),
+                future: createIssue(usernameIn, issue, campus, floor,category),
                 builder: (BuildContext context, snapshot) {
                   if (snapshot.hasData) {
                     
@@ -56,7 +56,7 @@ class EndPageState extends State<EndPage> {
                               const Padding(padding: EdgeInsets.symmetric(vertical: 30)),
                               Text("You will recieve an email on $usernameIn@student.wethinkcode.co.za"),
                             ],)),
-                            leading: const Icon(Icons.perm_identity),
+                            leading: const Icon(Icons.perm_identity,color: Colors.green,),
                             ),
                           // Text("Reference ID: ${snapshot.data.toString()}"),
                           const Padding(padding: EdgeInsets.all(50)),

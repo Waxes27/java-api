@@ -18,7 +18,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: _bar()),
+      appBar: _bar(),
       body: _homePageBody(context),
     );
   }
@@ -39,7 +39,7 @@ class HomePageState extends State<HomePage> {
     return FloorPage();
   }
 
-  Widget _bar() {
+  AppBar _bar() {
     return AppBar(
         title: const Center(
       child: Text("WeThinkCode_ Ticketing"),

@@ -9,4 +9,6 @@ curl --request POST "http://$1:4444/tickets" -d '{"date":"2021-11-26 02:07", "ca
 curl --request POST "http://$1:4444/tickets" -d '{"date":"2021-11-24 02:07", "category": "software","floor" : "4", "author" : "Javalin5", "issue":"Not compatible with flutter","campus":"JHB"}'
 curl --request POST "http://$1:4444/tickets" -d '{"date":"2021-11-26 02:07", "category": "software","floor" : "0", "author" : "Flutter", "issue":"New and fresh package","campus":"JHB"}'
 curl --request POST "http://$1:4444/tickets" -d '{"date":"2021-11-12 02:07", "category": "lms",     "floor" : "0", "author" : "zakirah", "issue":"Need automation done on all floors, and Durban campus is hungry for Network resolutions and CPT has Ruan....","campus":"JHB"}'
-curl --request POST "http://$1:4444/tickets" -d '{"date":"2021-11-10 02:07", "category": "hardware","floor" : "6", "author" : "sibonelo", "issue":"Lunch","campus":"JHB"}'
+curl --request POST "http://$1:4444/tickets" -d '{"date":"2021-11-10 02:07", "category": "hardware","floor" : "6", "author" : "sibonelo", "issue":"Broken Keyboard","campus":"JHB"}'
+curl --request POST "http://$1:4444/tickets" -d '{"date":"2021-11-10 02:07", "category": "hardware","floor" : "6", "author" : "sibonelo", "issue":"Need a new Mouse","campus":"JHB"}'
+curl --request POST "http://$1:4444/tickets" -d '{"date":"2021-11-10 02:07", "category": "hardware","floor" : "6", "author" : "sibonelo", "issue":"Server not found on Website","campus":"JHB"}'
