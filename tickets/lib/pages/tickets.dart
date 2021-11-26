@@ -76,8 +76,10 @@ class _TicketsState extends State<Tickets> {
         )),
         bottomNavigationBar: BottomAppBar(
             child: Row(
+              mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+
             ElevatedButton.icon(
                 onPressed: () {
                   Navigator.of(context)
@@ -87,7 +89,7 @@ class _TicketsState extends State<Tickets> {
                 },
                 icon: const Icon(Icons.add_comment),
                 label: const Text("Add new ticket"))
-          ],
+            ],
         )),
         body: Card(
           child: FutureBuilder(
@@ -121,7 +123,7 @@ class _TicketsState extends State<Tickets> {
                 //       return Flexible(child: buildRow(stuff[item]));
                 //     });
               }
-              return const CircularProgressIndicator.adaptive();
+              return const Center(child: CircularProgressIndicator.adaptive());
             },
           ),
         ));
