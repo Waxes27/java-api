@@ -42,6 +42,7 @@ class _DeatailsPageState extends State<DeatailsPage> {
                   ),
                 ),
               ),
+              SizedBox(height: 5),
               Text(
                 'Category: ${ticket.getCategory()}',
                 style: TextStyle(
@@ -50,7 +51,8 @@ class _DeatailsPageState extends State<DeatailsPage> {
 
                 ),
               ),
-               Text(
+              SizedBox(height: 2),
+              Text(
                 'Created: ${ticket.getCreationDate().substring(0,10)} at ${ticket.getCreationDate().substring(11,16)}',
                 style: TextStyle(
                   color: Colors.grey[500],
@@ -105,14 +107,26 @@ class _DeatailsPageState extends State<DeatailsPage> {
     );
   }
 
+  Widget textSection(ticketModel ticket) {
+    return Column(children: [
+      Text("Problem description:", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      ),
+      Text(
+        ticket.getProblem(),
+        style: TextStyle(fontSize: 15),
+      ),
+    ],);
+  }
+
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text("T I C K E T   D E T A I L S") ,)),
-      body: Center(child: Column(children: [
+      body: Column(children: [
         ticketDetails(widget.ticket),
+        textSection(widget.ticket),
         Divider(
             height: 20,
             thickness: 5,
@@ -120,8 +134,24 @@ class _DeatailsPageState extends State<DeatailsPage> {
             endIndent: 20,
             color: widget.dynamicColor(widget.ticket),
         ),
-        buttonSection()  
-      ])),
+        SizedBox(height: 20),
+        buttonSection(),
+        SizedBox(height: 52),
+        TextField(
+          minLines: 10,
+          maxLines: 15,
+          keyboardType: TextInputType.multiline,
+          decoration: InputDecoration(
+                    hintText: 'Add comments',
+                    hintStyle: TextStyle(
+                      color: Colors.grey
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    ),
+          )
+)  
+      ]),
     );
   }
 }
