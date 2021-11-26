@@ -44,7 +44,7 @@ class _HomePageState extends State<_HomePage> {
     if (ticket.getCategory() == "HARDWARE") {
       return Icons.mouse;
     } else if (ticket.getCategory() == "SOFTWARE") {
-      return Icons.adb_sharp;
+      return Icons.bug_report_outlined;
     } else if (ticket.getCategory() == "LMS") {
       // return Icons.cable_rounded;
       return Icons.code;
@@ -66,42 +66,47 @@ class _HomePageState extends State<_HomePage> {
           sortAscending: true,
           columns: [
              DataColumn(
-                label: Container(child: 
-                        Flexible(fit: FlexFit.tight, 
-                        child: Text('',
-                                style:
+                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('',
+                    style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
+
              DataColumn(
                 label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Reference',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
+
              DataColumn(
                 label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Username',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
+
              DataColumn(
                 label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Date',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
+
              DataColumn(
                 label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Campus',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
+
              DataColumn(
                 label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Floor',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
+
              DataColumn(
                 label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Issue',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
+                
              DataColumn(
                 label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Status',
                     style:
@@ -205,6 +210,8 @@ class _HomePageState extends State<_HomePage> {
   }
 
   void editTicket(id, status) async {
+
+    // TODO: Need to add logic that notifies user if ticket update has failed
     final response =
         await http.post(Uri.parse("$uri/ticket/update/$id/$status"));
   }
@@ -250,8 +257,8 @@ class _HomePageState extends State<_HomePage> {
       }
           }
     ));
+  }
 }
-    }
         
         // Center(
         //   child: ElevatedButton(
