@@ -31,7 +31,7 @@ class ticketModel extends ChangeNotifier {
       this.campus,
       this.status,
       this.category});
-      
+
   factory ticketModel.fromJson(json) {
     var newTicket = ticketModel(
         id: int.parse(json["id"]),
@@ -44,7 +44,7 @@ class ticketModel extends ChangeNotifier {
         status: stuff(json['completed'].toLowerCase()),
         category: json['category']);
     print(newTicket.getID());
-    
+
     return newTicket;
   }
 

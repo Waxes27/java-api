@@ -22,12 +22,14 @@ class HomePageState extends State<HomePage> {
       body: _homePageBody(context),
     );
   }
-  void _goToTickets(){
+
+  void _goToTickets() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
       return Tickets();
     }));
   }
+
   void _goToIssues() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {

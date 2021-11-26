@@ -21,52 +21,65 @@ class EndPageState extends State<EndPage> {
             title: const Center(
           child: Text("WeThinkCode_ Ticketing"),
         )),
-        body: SingleChildScrollView( child:Column(
+        body: SingleChildScrollView(
+            child: Column(
           children: <Widget>[
-            
-
             const Padding(padding: EdgeInsets.all(50)),
             FutureBuilder(
-                future: createIssue(usernameIn, issue, campus, floor,category),
+                future: createIssue(usernameIn, issue, campus, floor, category),
                 builder: (BuildContext context, snapshot) {
                   if (snapshot.hasData) {
-                    
                     return Center(
-                      child: Flexible(
-                        fit: FlexFit.loose,
-                        child: Card(
-                        shadowColor: Colors.blue,
-                        child: SingleChildScrollView( child:
-                        Column(
-                          children: <Widget>[
-                          const Padding(padding: EdgeInsets.all(50)),
-                          ListTile(
-                            title: SingleChildScrollView( child:Column(children: <Widget>[
-                              const Center(
-                                child: Text(
-                                  "Your ticket has been logged with these details.",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: "aria",
+                        child: Flexible(
+                            fit: FlexFit.loose,
+                            child: Card(
+                                shadowColor: Colors.blue,
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: <Widget>[
+                                      const Padding(
+                                          padding: EdgeInsets.all(50)),
+                                      ListTile(
+                                        title: SingleChildScrollView(
+                                            child: Column(
+                                          children: <Widget>[
+                                            const Center(
+                                              child: Text(
+                                                "Your ticket has been logged with these details.",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontFamily: "aria",
+                                                ),
+                                              ),
+                                            ),
+                                            const Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 30)),
+                                            Text(
+                                                "Reference ID: ${snapshot.data.toString()}"),
+                                            const Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 30)),
+                                            Text(
+                                                "You will recieve an email on $usernameIn@student.wethinkcode.co.za"),
+                                          ],
+                                        )),
+                                        leading: const Icon(
+                                          Icons.perm_identity,
+                                          color: Colors.green,
+                                        ),
+                                      ),
+                                      // Text("Reference ID: ${snapshot.data.toString()}"),
+                                      const Padding(
+                                          padding: EdgeInsets.all(50)),
+                                    ],
                                   ),
-                                ),
-                              ),
-                              const Padding(padding: EdgeInsets.symmetric(vertical: 30)),
-                              Text("Reference ID: ${snapshot.data.toString()}"),
-                              const Padding(padding: EdgeInsets.symmetric(vertical: 30)),
-                              Text("You will recieve an email on $usernameIn@student.wethinkcode.co.za"),
-                            ],)),
-                            leading: const Icon(Icons.perm_identity,color: Colors.green,),
-                            ),
-                          // Text("Reference ID: ${snapshot.data.toString()}"),
-                          const Padding(padding: EdgeInsets.all(50)),
-
-                        ],), 
-                    ))));
+                                ))));
                   } else {
                     return const Center(
                       child: CircularProgressIndicator.adaptive(),
-                    );}
+                    );
+                  }
                 }),
 
             // const Padding(padding: EdgeInsets.all(80)),
@@ -76,4 +89,3 @@ class EndPageState extends State<EndPage> {
         )));
   }
 }
-

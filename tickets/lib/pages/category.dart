@@ -3,8 +3,8 @@ import 'package:tickets/pages/homepage.dart';
 import 'package:tickets/pages/campus.dart';
 import 'floor.dart';
 
-String category = 'Other';
 String issue = "";
+String category = '';
 
 class IssuesPage extends StatefulWidget {
   @override
@@ -14,18 +14,6 @@ class IssuesPage extends StatefulWidget {
 class IssuesPageState extends State<IssuesPage> {
   Widget _floor(BuildContext context) {
     return FloorPage();
-
-    // child: TextField(
-    //   decoration: const InputDecoration(
-    //     hintText: "What is your floor number? (e.g. 4)",
-    //     contentPadding: EdgeInsets.all(24.0)),
-    //   onSubmitted: (text) {
-    //     floor = text;
-    //     _goToThankYou();
-    //     createIssue();
-    //   },
-    // ),
-    // ));
   }
 
   // void _goToFloor() {
@@ -73,7 +61,8 @@ class IssuesPageState extends State<IssuesPage> {
                     'Software',
                     'LMS',
                     'Maintenance',
-                    'Other'
+                    'Other',
+                    ''
                   ].map<DropdownMenuItem<String>>((String value) {
                     category = value;
                     return DropdownMenuItem<String>(

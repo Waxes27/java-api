@@ -24,8 +24,7 @@ class ticketModel extends ChangeNotifier {
   List<ticketModel> tickets = [];
 
   ticketModel(
-      {
-      this.id,
+      {this.id,
       this.referenceId,
       this.userName,
       this.problem,

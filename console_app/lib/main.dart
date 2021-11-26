@@ -26,7 +26,6 @@ class _HomePage extends StatefulWidget {
 POST {ip}/ticket/update/{id}
 */
 
-
 class _HomePageState extends State<_HomePage> {
   // final GlobalKey<TicketPageState> _key = GlobalKey();
   late Future<List<ticketModel>> data;
@@ -58,59 +57,76 @@ class _HomePageState extends State<_HomePage> {
     return Icon(_iconData(ticket), color: _color(ticket));
   }
 
-    SingleChildScrollView _dataTable(tickets) {
+  SingleChildScrollView _dataTable(tickets) {
     return SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: DataTable(
           sortColumnIndex: 0,
           sortAscending: true,
           columns: [
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Reference',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Reference',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Username',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Username',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Date',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Date',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Campus',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Campus',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Floor',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Floor',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Issue',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Issue',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-                
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Status',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Status',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
           ],
           rows: _buildrows(tickets),
@@ -197,6 +213,7 @@ class _HomePageState extends State<_HomePage> {
             ]))
         .toList();
   }
+
   Future<List<ticketModel>> fetchTickets() async {
     final response = await http.get(Uri.parse("$uri/tickets"));
     List<ticketModel> _data = [];
@@ -210,7 +227,6 @@ class _HomePageState extends State<_HomePage> {
   }
 
   void editTicket(id, status) async {
-
     // TODO: Need to add logic that notifies user if ticket update has failed
     final response =
         await http.post(Uri.parse("$uri/ticket/update/$id/$status"));
@@ -226,12 +242,12 @@ class _HomePageState extends State<_HomePage> {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
       return DeatailsPage(
-        ticket: ticket, 
+        ticket: ticket,
         dynamicIcon: _dynamicIcon,
-        dynamicColor: _color,);
+        dynamicColor: _color,
+      );
     }));
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -240,31 +256,25 @@ class _HomePageState extends State<_HomePage> {
           title: Center(child: Text("C O N S O L E")),
         ),
         body: FutureBuilder(
-          future: data,
-          initialData: [],
-          builder: (context, snapshot){
-          if (snapshot.hasError) {
-          return const Center(child: Text('An Error Occurred'));
-          }
-          else if (snapshot.hasData) {
-         
-          return _dataTable(snapshot.data);
-          }
-          else {
-	
-        return Text('State: ${snapshot.connectionState}');
-	
-      }
-          }
-    ));
+            future: data,
+            initialData: [],
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Center(child: Text('An Error Occurred'));
+              } else if (snapshot.hasData) {
+                return _dataTable(snapshot.data);
+              } else {
+                return Text('State: ${snapshot.connectionState}');
+              }
+            }));
   }
 }
-        
-        // Center(
-        //   child: ElevatedButton(
-        //     child: Text("Go to tickets page."),
-        //     onPressed: () {
-        //       _goToTickets();
-        //     },
-        //   ),
-        // ));
+
+// Center(
+//   child: ElevatedButton(
+//     child: Text("Go to tickets page."),
+//     onPressed: () {
+//       _goToTickets();
+//     },
+//   ),
+// ));

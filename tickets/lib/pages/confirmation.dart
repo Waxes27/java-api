@@ -5,7 +5,6 @@ import 'floor.dart';
 import 'category.dart';
 import 'package:tickets/pages/homepage.dart';
 
-
 var now = DateTime.now();
 // String referenceId = "";
 
@@ -16,8 +15,6 @@ class ConfirmationPage extends StatefulWidget {
 
 class ConfirmationPageState extends State<ConfirmationPage> {
   final List<String> listOfData = [usernameIn, category, campus, floor, ""];
-
-  
 
   @override
   Widget build(BuildContext context) {
