@@ -268,7 +268,7 @@ public class Ticket implements TicketInterface{
     public void setDate(Context context) {
         // System.out.println("DATE CONTEXT: "+context);
         JSONObject data = new JSONObject(context.body());
-        this.date = data.get("date");
+        this.date = (Date) data.get("date");
         // Date dateTemp = new Date(System.currentTimeMillis());
         // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
