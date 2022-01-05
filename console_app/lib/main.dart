@@ -22,12 +22,8 @@ class ConsoleApp extends StatelessWidget {
 class _HomePage extends StatefulWidget {
   createState() => _HomePageState();
 }
-/*
-POST {ip}/ticket/update/{id}
-*/
 
 class _HomePageState extends State<_HomePage> {
-  // final GlobalKey<TicketPageState> _key = GlobalKey();
   late Future<List<ticketModel>> data;
 
   Color? _color(ticket) {
@@ -38,6 +34,7 @@ class _HomePageState extends State<_HomePage> {
     }
     return Colors.lightGreenAccent[400];
   }
+
 
   IconData _iconData(ticket) {
     if (ticket.getCategory() == "HARDWARE") {
@@ -52,6 +49,7 @@ class _HomePageState extends State<_HomePage> {
     }
     return Icons.not_listed_location_rounded;
   }
+
 
   Icon _dynamicIcon(ticket) {
     return Icon(_iconData(ticket), color: _color(ticket));
@@ -132,6 +130,7 @@ class _HomePageState extends State<_HomePage> {
           rows: _buildrows(tickets),
         ));
   }
+
 
   List<DataRow> _buildrows(List tickets) {
     // tickets = data.getTickets();
@@ -226,17 +225,20 @@ class _HomePageState extends State<_HomePage> {
     return _data;
   }
 
+
   void editTicket(id, status) async {
     // TODO: Need to add logic that notifies user if ticket update has failed
     final response =
         await http.post(Uri.parse("$uri/ticket/update/$id/$status"));
   }
 
+
   @override
   void initState() {
     super.initState();
     data = fetchTickets();
   }
+
 
   void _goToTicketsDetails(ticketModel ticket) {
     Navigator.of(context)
@@ -256,25 +258,22 @@ class _HomePageState extends State<_HomePage> {
           title: Center(child: Text("C O N S O L E")),
         ),
         body: FutureBuilder(
-            future: data,
-            initialData: [],
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return const Center(child: Text('An Error Occurred'));
-              } else if (snapshot.hasData) {
-                return _dataTable(snapshot.data);
-              } else {
-                return Text('State: ${snapshot.connectionState}');
-              }
-            }));
+          future: data,
+          initialData: [],
+          builder: (context, snapshot){
+          if (snapshot.hasError) {
+          return const Center(child: Text('An Error Occurred, Please contact the head admin'));
+          }
+          else if (snapshot.hasData) {
+         
+          return _dataTable(snapshot.data);
+          }
+          else {
+	
+        return Text('State: ${snapshot.connectionState}');
+	
+      }
+          }
+    ));
   }
 }
-
-// Center(
-//   child: ElevatedButton(
-//     child: Text("Go to tickets page."),
-//     onPressed: () {
-//       _goToTickets();
-//     },
-//   ),
-// ));

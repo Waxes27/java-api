@@ -23,7 +23,7 @@ public class Ticket implements TicketInterface{
     private long referenceId;
     private int id;
     private int floor;
-    private String date;
+    private Date date;
     private String assignee;
 
     @Override
@@ -260,7 +260,7 @@ public class Ticket implements TicketInterface{
     }
 
     @Override
-    public String getDate() {
+    public Date getDate() {
         return this.date;
     }
 

@@ -29,29 +29,61 @@ class _DeatailsPageState extends State<DeatailsPage> {
       padding: const EdgeInsets.all(32),
       child: Row(children: [
         Expanded(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Text(
-              'Authored by: ${ticket.getUsername().toUpperCase()}',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
-          SizedBox(height: 5),
-          Text(
-            'Category: ${ticket.getCategory()}',
-            style: TextStyle(color: Colors.grey[500], fontSize: 15),
-          ),
-          SizedBox(height: 2),
-          Text(
-              'Created: ${ticket.getCreationDate().substring(0, 10)} at ${ticket.getCreationDate().substring(11, 16)}',
-              style: TextStyle(color: Colors.grey[500], fontSize: 15)),
-        ])),
-        Text(
-          "STATUS: ${ticket.isCompleted().toString().replaceAll("Status.", "")}",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-        )
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Text(
+                  'Authored by: ${ticket.getUsername().toUpperCase()}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
+              Text(
+                'Campus: ${ticket.getCampus()}',
+                style: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 15
+                )
+              ),
+               Text(
+                'Floor: ${ticket.getFloor()}',
+                style: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 15
+                )
+              ),
+              Text(
+                'Category: ${ticket.getCategory()}',
+                style: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 15
+
+                ),
+              ),
+              SizedBox(height: 2),
+              Text(
+                'Created: ${ticket.getCreationDate().substring(0,10)} at ${ticket.getCreationDate().substring(11,16)}',
+                style: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 15
+
+                )
+              ),
+            ]
+          )
+        ),
+      Text(
+                "STATUS: ${ticket.isCompleted().toString().replaceAll("Status.", "")}",
+                style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20
+                        ),
+      )
       ]),
     );
   }
@@ -121,8 +153,15 @@ class _DeatailsPageState extends State<DeatailsPage> {
           endIndent: 20,
           color: widget.dynamicColor(widget.ticket),
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 10),
         buttonSection(),
+         Divider(
+            height: 20,
+            thickness: 5,
+            indent: 20,
+            endIndent: 20,
+            color: widget.dynamicColor(widget.ticket)
+        ),
         SizedBox(height: 52),
         TextField(
             minLines: 10,

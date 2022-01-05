@@ -2,6 +2,7 @@ package ApiHandler;
 
 import io.javalin.http.Context;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public interface TicketInterface {
 
      void setFloor(String floor);
 
-     String getDate();
+     Date getDate();
 
      void setDate(Context context);
 
