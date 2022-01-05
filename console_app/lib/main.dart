@@ -157,7 +157,7 @@ class _HomePageState extends State<_HomePage> {
                 ),
                 onPressed: () => {
                   _goToTicketsDetails(ticket)
-                  ////////////////////
+                  
                 },
                 child: Text(ticket.getRefID().toString()),
               )),

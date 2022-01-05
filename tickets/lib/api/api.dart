@@ -15,7 +15,7 @@ Future createIssue(username, userIssue, userCampus, userFloor, category) async {
   print(now); // 2016-01-25
 
   Response data = await http.post(
-    Uri.parse('http://$ip:4444/tickets'),
+    Uri.parse('https://$ip:4444/tickets'),
     body: jsonEncode(<String, String>{
       "author": username,
       "issue": userIssue.toString(),
@@ -39,7 +39,7 @@ Future createIssue(username, userIssue, userCampus, userFloor, category) async {
 
 Future getUserTickets(String username) async {
   Response data =
-      await http.get(Uri.parse('http://$ip:4444/tickets/$username'));
+      await http.get(Uri.parse('https://$ip:4444/tickets/$username'));
   // print(data.body);
   List listOfDartJson = [];
 

@@ -71,6 +71,26 @@ public class DBconnect {
         connection.close();
     }
 
+
+    public void assignStaff(Ticket ticket,String assignee) throws SQLException {
+        Connection connection = connection();
+        statement = connection.createStatement();
+
+        statement.executeUpdate("insert into tickets(username,campus,issue,completed,floor,date,category,reference_id,assignee) values ("
+                + "\"" + ticket.getTicketOwner()+"\","
+                + "\"" + ticket.getCampus()+ "\","
+                + "\"" + ticket.getIssue()+ "\","
+                + "\"" + ticket.completed(Completed.INCOMPLETE)+"\","
+                + "\"" + ticket.getFloor()+ "\","
+                + "\"" + ticket.getDate() + "\","
+                + "\"" + ticket.getCategory() + "\","
+                + "\"" + ticket.getReferenceId() + "\","
+                + "\"" + assignee + "\""
+                + ")"
+        );
+        connection.close();
+    }
+
     public void getTicketId(Context context) throws SQLException{
         Connection connection = connection();
         statement = connection.createStatement();
@@ -132,6 +152,7 @@ public class DBconnect {
                 "date VARCHAR(30)," +
                 "category VARCHAR(10)," +
                 "reference_id VARCHAR(20) UNIQUE," +
+                "assignee VARCHAR(30)," +
                 "primary key(id))"
         );
         connection.close();

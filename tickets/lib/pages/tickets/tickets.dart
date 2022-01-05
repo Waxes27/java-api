@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:tickets/api/models/ticket.dart';
 import 'package:tickets/pages/homepage.dart';
 import 'package:tickets/api/api.dart';
-import 'issues.dart';
+import 'package:tickets/pages/tickets/ticket_details.dart';
+import '../issues.dart';
 
 class Tickets extends StatefulWidget {
   const Tickets({Key? key}) : super(key: key);
@@ -48,22 +49,27 @@ class _TicketsState extends State<Tickets> {
             ]))}');
     return listOfJson
         .map((json) => DataRow(cells: [
-          DataCell(
-            Icon(
-              Icons.ac_unit,
-              color: json["completed"]=="completed".toUpperCase()?Colors.green:
-              json["completed"]=="pending".toUpperCase()?Colors.amber:
-              Colors.red,
-              )
-            
-            ),
-          DataCell(TextButton(
-            onPressed: (){},
-            child: Text(json["referenceId"])
-            )),
-          DataCell(Text(json["issue"])),
-          // DataCell(Text(json["completed"].toString().toLowerCase())),
-          ]))
+              DataCell(Text("None until further notice")),
+              DataCell(Icon(
+                Icons.ac_unit,
+                color: json["completed"] == "completed".toUpperCase()
+                    ? Colors.green
+                    : json["completed"] == "pending".toUpperCase()
+                        ? Colors.amber
+                        : Colors.red,
+              )),
+              DataCell(TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                      return TicketDetail(
+                        reference: json["referenceId"]
+                        );
+                    }));
+                  },
+                  child: Text(json["referenceId"]))),
+              DataCell(Text(json["issue"])),
+              // DataCell(Text(json["completed"].toString().toLowerCase())),
+            ]))
         .toList();
   }
 
@@ -76,10 +82,9 @@ class _TicketsState extends State<Tickets> {
         )),
         bottomNavigationBar: BottomAppBar(
             child: Row(
-              mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-
             ElevatedButton.icon(
                 onPressed: () {
                   Navigator.of(context)
@@ -89,7 +94,7 @@ class _TicketsState extends State<Tickets> {
                 },
                 icon: const Icon(Icons.add_comment),
                 label: const Text("Add new ticket"))
-            ],
+          ],
         )),
         body: Card(
           child: FutureBuilder(
@@ -98,8 +103,8 @@ class _TicketsState extends State<Tickets> {
               if (snapshot.hasData) {
                 List stuff = jsonDecode(snapshot.data.toString());
                 return Flexible(
-                        child: SingleChildScrollView(
-                            child: Center(
+                    child: SingleChildScrollView(
+                        child: Center(
                   child: DataTable(
                     showBottomBorder: true,
                     horizontalMargin: 20,
@@ -108,20 +113,18 @@ class _TicketsState extends State<Tickets> {
                     // dividerThickness: ,
 
                     columns: const [
+                      DataColumn(
+                          label: Flexible(child: Text("Staff assigned"))),
                       DataColumn(label: Flexible(child: Text("Status"))),
                       DataColumn(
                           label: Flexible(child: Text("Reference Number"))),
+
                       DataColumn(label: Flexible(child: Text("Issue"))),
                       // DataColumn(label: Flexible(child: Text("Status"))),
                     ],
                     rows: _buildRows(stuff),
                   ),
                 )));
-                // return ListView.builder(
-                //     itemCount: stuff.length,
-                //     itemBuilder: (context, item) {
-                //       return Flexible(child: buildRow(stuff[item]));
-                //     });
               }
               return const Center(child: CircularProgressIndicator.adaptive());
             },

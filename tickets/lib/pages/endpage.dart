@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tickets/pages/tickets.dart';
+import 'package:tickets/pages/tickets/tickets.dart';
 import './campus.dart';
 import 'package:tickets/pages/homepage.dart';
 import 'package:tickets/api/api.dart';

@@ -26,6 +26,7 @@ public class ApiServer {
         server.get("/tickets", ApiServer::getTickets);
         server.get("/tickets/{user}", ApiServer::getUserTickets);
         server.post("/ticket", ApiServer::getTicket);
+        server.post("/ticket/update/assigned/{staff}", ApiServer::assignStaffToTicket);
     }
 
     private static void resetCounter(Context context) throws SQLException {
@@ -35,6 +36,12 @@ public class ApiServer {
     private static void addTicket(Context context) throws Exception {
         Ticket ticket = new Ticket();
         ticket = ticket.setAll(context.body(),context);
+        context.json(ticket.toString());
+    }
+    
+    private static void assignStaffToTicket(Context context) throws Exception {
+        Ticket ticket = new Ticket();
+        ticket = ticket.setStaff(context);
         context.json(ticket.toString());
     }
 

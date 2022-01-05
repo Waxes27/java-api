@@ -1,8 +1,6 @@
 package ApiHandler;
 
 import io.javalin.http.Context;
-import org.json.JSONObject;
-
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +13,8 @@ public interface TicketInterface {
      String getTicketOwner();
 
      String getCampus();
+
+     Ticket setStaff(Context context) throws SQLException;
 
      String getIssueAsString();
 
