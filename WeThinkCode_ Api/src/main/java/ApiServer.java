@@ -17,7 +17,13 @@ public class ApiServer {
 
     public static void main(String[] args) {
         int port = 4444;
-        Javalin server = Javalin.create(JavalinConfig::enableCorsForAllOrigins).start(port);
+        Javalin server = Javalin.create(
+            config -> {
+                config.enforceSsl = true; 
+                config.enableCorsForAllOrigins();
+            }
+            
+            ).start(port);
 
         server.post("/tickets", ApiServer::addTicket);
         server.post("/tickets/reset/{id}", ApiServer::resetCounter);
