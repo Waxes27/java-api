@@ -16,7 +16,7 @@ import com.mysql.cj.xdevapi.Result;
 public class ApiServer {
 
     public static void main(String[] args) {
-        int port = 4444;
+        int port = 443;
         Javalin server = Javalin.create(
             config -> {
                 config.enforceSsl = false; 
