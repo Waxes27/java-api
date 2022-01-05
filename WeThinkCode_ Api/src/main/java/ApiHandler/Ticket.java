@@ -24,6 +24,7 @@ public class Ticket implements TicketInterface{
     private int id;
     private int floor;
     private String date;
+    private String assignee;
 
     @Override
     public void setCategory(Category value){
@@ -274,4 +275,14 @@ public class Ticket implements TicketInterface{
         
         // this.date = formatter.format(dateTemp);
     }
+
+    @Override
+    public Ticket setStaff(Context context) throws SQLException {
+        DBconnect dBconnect = new DBconnect();
+        String staff = context.pathParam("staff");
+        dBconnect.assignStaff(this,staff);
+        return null;
+    }
+
+    
 }

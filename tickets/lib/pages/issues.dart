@@ -3,7 +3,9 @@ import 'package:tickets/pages/homepage.dart';
 import 'package:tickets/pages/campus.dart';
 import 'floor.dart';
 
+String issue = "";
 String category = 'Other';
+
 class IssuesPage extends StatefulWidget {
   @override
   IssuesPageState createState() => IssuesPageState();
@@ -12,18 +14,6 @@ class IssuesPage extends StatefulWidget {
 class IssuesPageState extends State<IssuesPage> {
   Widget _floor(BuildContext context) {
     return FloorPage();
-
-    // child: TextField(
-    //   decoration: const InputDecoration(
-    //     hintText: "What is your floor number? (e.g. 4)",
-    //     contentPadding: EdgeInsets.all(24.0)),
-    //   onSubmitted: (text) {
-    //     floor = text;
-    //     _goToThankYou();
-    //     createIssue();
-    //   },
-    // ),
-    // ));
   }
 
   // void _goToFloor() {
@@ -38,14 +28,13 @@ class IssuesPageState extends State<IssuesPage> {
     return Scaffold(
         appBar: AppBar(
             title: const Center(
-              child: Text("What is the issue today?"),
-            ) 
-            ),
+          child: Text("What is the issue today?"),
+        )),
         body: Center(
-          child: Column(
-            // padding: const EdgeInsets.all(50.0),
+            child: Column(
+                // padding: const EdgeInsets.all(50.0),
 
-            children: <Widget>[
+                children: <Widget>[
               const Padding(padding: EdgeInsets.all(50)),
               Center(
                 child: DropdownButton<String>(
@@ -58,7 +47,7 @@ class IssuesPageState extends State<IssuesPage> {
                   onChanged: (String? newValue) {
                     setState(() {
                       print("$newValue $category");
-                      category = newValue!; 
+                      category = newValue!;
                       // if (issue.toLowerCase()=="other"){
                       //   setState(() {
                       //     disabled = true;
@@ -72,8 +61,9 @@ class IssuesPageState extends State<IssuesPage> {
                     'Software',
                     'LMS',
                     'Maintenance',
-                    'Other'
+                    'Other',
                   ].map<DropdownMenuItem<String>>((String value) {
+                    category = value;
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -81,17 +71,30 @@ class IssuesPageState extends State<IssuesPage> {
                   }).toList(),
                 ),
               ),
-
               const Padding(padding: EdgeInsets.all(50)),
-          
-              ElevatedButton(onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext constext) {
-                  return CampusPage();
-                }));
-              },
-              child: const Text("Continue")),
-
+              Container(
+                  padding: const EdgeInsets.all(50.0),
+                  child: Center(
+                    child: TextField(
+                      decoration: const InputDecoration(
+                          hintText:
+                              "Please explain the problem that you are facing (250 Characters)",
+                          contentPadding: EdgeInsets.all(24.0)),
+                      onChanged: (text) {
+                        issue = text;
+                      },
+                      // autofocus: true,
+                    ),
+                  )),
+              const Padding(padding: EdgeInsets.all(50)),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext constext) {
+                      return CampusPage();
+                    }));
+                  },
+                  child: const Text("Continue")),
             ])));
   }
 }

@@ -17,7 +17,13 @@ public class ApiServer {
 
     public static void main(String[] args) {
         int port = 4444;
-        Javalin server = Javalin.create(JavalinConfig::enableCorsForAllOrigins).start(port);
+        Javalin server = Javalin.create(
+            config -> {
+                config.enforceSsl = true; 
+                config.enableCorsForAllOrigins();
+            }
+            
+            ).start(port);
 
         server.post("/tickets", ApiServer::addTicket);
         server.post("/tickets/reset/{id}", ApiServer::resetCounter);
@@ -26,6 +32,7 @@ public class ApiServer {
         server.get("/tickets", ApiServer::getTickets);
         server.get("/tickets/{user}", ApiServer::getUserTickets);
         server.post("/ticket", ApiServer::getTicket);
+        server.post("/ticket/update/assigned/{staff}", ApiServer::assignStaffToTicket);
     }
 
     private static void resetCounter(Context context) throws SQLException {
@@ -35,6 +42,12 @@ public class ApiServer {
     private static void addTicket(Context context) throws Exception {
         Ticket ticket = new Ticket();
         ticket = ticket.setAll(context.body(),context);
+        context.json(ticket.toString());
+    }
+    
+    private static void assignStaffToTicket(Context context) throws Exception {
+        Ticket ticket = new Ticket();
+        ticket = ticket.setStaff(context);
         context.json(ticket.toString());
     }
 

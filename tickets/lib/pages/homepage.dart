@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tickets/pages/category.dart';
-import 'package:tickets/pages/tickets.dart';
+import 'package:tickets/pages/issues.dart';
+import 'package:tickets/pages/tickets/tickets.dart';
 import 'floor.dart';
 import 'endpage.dart';
 
@@ -18,16 +18,18 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: _bar()),
+      appBar: _bar(),
       body: _homePageBody(context),
     );
   }
-  void _goToTickets(){
+
+  void _goToTickets() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
       return Tickets();
     }));
   }
+
   void _goToIssues() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
@@ -39,7 +41,7 @@ class HomePageState extends State<HomePage> {
     return FloorPage();
   }
 
-  Widget _bar() {
+  AppBar _bar() {
     return AppBar(
         title: const Center(
       child: Text("WeThinkCode_ Ticketing"),

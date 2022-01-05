@@ -17,72 +17,69 @@ class CampusPageState extends State<CampusPage> {
     return Scaffold(
         appBar: AppBar(
             title: const Center(
-              child: Text("Where is your campus based?"),
-            ) 
-            ),
+          child: Text("Where is your campus based?"),
+        )),
         body: Column(
             // padding: const EdgeInsets.all(50.0),
 
             children: <Widget>[
-          const Padding(padding: EdgeInsets.all(50)),
-          Center(
-              child: DropdownButton<String>(
-            value: campus,
-            style: const TextStyle(color: Colors.deepPurple),
-            underline: Container(
-              height: 2,
-              color: Colors.deepPurpleAccent,
-            ),
-            onChanged: (String? newValue) {
-              setState(() {                
-                print("$newValue $campus");
-                campus = newValue!;
-                // if (dropdownValue.toLowerCase() == "other") {
-                //   setState(() {
-                //     disabled = true;
-                //   });
-                // }
-              });
-            },
+              const Padding(padding: EdgeInsets.all(50)),
+              Center(
+                  child: DropdownButton<String>(
+                value: campus,
+                style: const TextStyle(color: Colors.deepPurple),
+                underline: Container(
+                  height: 2,
+                  color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    print("$newValue $campus");
+                    campus = newValue!;
+                    // if (dropdownValue.toLowerCase() == "other") {
+                    //   setState(() {
+                    //     disabled = true;
+                    //   });
+                    // }
+                  });
+                },
+                items: <String>['JHB', 'CPT', 'DBN']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              )),
 
-            items: <String>['JHB', 'CPT', 'DBN']
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            
-          )),
+              // Visibility(
+              //   visible: disabled,
+              //   child: TextField(
+              //     decoration: InputDecoration(
+              //       contentPadding: const EdgeInsets.symmetric(horizontal: 50),
+              //       hintText: "Please describe your issue. ",
+              //       enabled: disabled,
+              //     ),
+              //     onSubmitted: (text) {
+              //       otherIssue = text;
+              //       Navigator.of(context)
+              //           .push(MaterialPageRoute(builder: (BuildContext constext) {
+              //         return FloorPage();
+              //       }));
+              //     },
+              //   ),
+              // ),
 
+              const Padding(padding: EdgeInsets.all(50)),
 
-          // Visibility(
-          //   visible: disabled,
-          //   child: TextField(
-          //     decoration: InputDecoration(
-          //       contentPadding: const EdgeInsets.symmetric(horizontal: 50),
-          //       hintText: "Please describe your issue. ",
-          //       enabled: disabled,
-          //     ),
-          //     onSubmitted: (text) {
-          //       otherIssue = text;
-          //       Navigator.of(context)
-          //           .push(MaterialPageRoute(builder: (BuildContext constext) {
-          //         return FloorPage();
-          //       }));
-          //     },
-          //   ),
-          // ),
-
-          const Padding(padding: EdgeInsets.all(50)),
-
-          ElevatedButton(onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext constext) {
-                  return FloorPage();
-                }));
-              }, child: const Text("Continue"))
-        ]
-            ));
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext constext) {
+                      return FloorPage();
+                    }));
+                  },
+                  child: const Text("Continue"))
+            ]));
   }
 }

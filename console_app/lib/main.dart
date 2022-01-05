@@ -23,7 +23,6 @@ class _HomePage extends StatefulWidget {
   createState() => _HomePageState();
 }
 
-
 class _HomePageState extends State<_HomePage> {
   late Future<List<ticketModel>> data;
 
@@ -56,7 +55,6 @@ class _HomePageState extends State<_HomePage> {
     return Icon(_iconData(ticket), color: _color(ticket));
   }
 
-
   SingleChildScrollView _dataTable(tickets) {
     return SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -64,52 +62,69 @@ class _HomePageState extends State<_HomePage> {
           sortColumnIndex: 0,
           sortAscending: true,
           columns: [
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Reference',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Reference',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Username',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Username',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Date',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Date',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Campus',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Campus',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Floor',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Floor',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Issue',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Issue',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
-                
-             DataColumn(
-                label: Container(child: Flexible(fit: FlexFit.tight, child: Text('Status',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))),
+            DataColumn(
+                label: Container(
+                    child: Flexible(
+                        fit: FlexFit.tight,
+                        child: Text('Status',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)))),
                 onSort: (i, b) {}),
           ],
           rows: _buildrows(tickets),
@@ -141,7 +156,7 @@ class _HomePageState extends State<_HomePage> {
                 ),
                 onPressed: () => {
                   _goToTicketsDetails(ticket)
-                  ////////////////////
+                  
                 },
                 child: Text(ticket.getRefID().toString()),
               )),
@@ -198,7 +213,6 @@ class _HomePageState extends State<_HomePage> {
         .toList();
   }
 
-
   Future<List<ticketModel>> fetchTickets() async {
     final response = await http.get(Uri.parse("$uri/tickets"));
     List<ticketModel> _data = [];
@@ -213,7 +227,6 @@ class _HomePageState extends State<_HomePage> {
 
 
   void editTicket(id, status) async {
-
     // TODO: Need to add logic that notifies user if ticket update has failed
     final response =
         await http.post(Uri.parse("$uri/ticket/update/$id/$status"));
@@ -231,12 +244,12 @@ class _HomePageState extends State<_HomePage> {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
       return DeatailsPage(
-        ticket: ticket, 
+        ticket: ticket,
         dynamicIcon: _dynamicIcon,
-        dynamicColor: _color,);
+        dynamicColor: _color,
+      );
     }));
   }
-  
 
   @override
   Widget build(BuildContext context) {

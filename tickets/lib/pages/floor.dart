@@ -17,7 +17,6 @@ String defaultFloor() {
       return "1st";
     default:
       return "1st";
-
   }
 }
 
@@ -47,8 +46,7 @@ class FloorPageState extends State<FloorPage> {
         }).toList();
 
       default:
-        return <String>['1st']
-            .map<DropdownMenuItem<String>>((String value) {
+        return <String>['1st'].map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(value),
