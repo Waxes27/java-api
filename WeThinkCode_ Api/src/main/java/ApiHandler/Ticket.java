@@ -112,7 +112,7 @@ public class Ticket implements TicketInterface{
         ticket.put("issue", issue);
         ticket.put("completed", completed);
         ticket.put("floor",floor);
-        ticket.put("date",date);
+        ticket.put("date", date);
         ticket.put("category",category);
         ticket.put("referenceId",referenceId);
         return ticket;
@@ -268,7 +268,7 @@ public class Ticket implements TicketInterface{
     public void setDate(Context context) {
         // System.out.println("DATE CONTEXT: "+context);
         JSONObject data = new JSONObject(context.body());
-        this.date = data.get("date").toString();
+        this.date = data.get("date");
         // Date dateTemp = new Date(System.currentTimeMillis());
         // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
