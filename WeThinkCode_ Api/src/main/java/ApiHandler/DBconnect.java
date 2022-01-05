@@ -149,7 +149,7 @@ public class DBconnect {
                 "issue VARCHAR("+id+") NOT NULL," +
                 "completed VARCHAR(15),"+
                 "floor INT,"+
-                "date VARCHAR(30)," +
+                "date DATETIME," +
                 "category VARCHAR(10)," +
                 "reference_id VARCHAR(20) UNIQUE," +
                 "assignee VARCHAR(30)," +
