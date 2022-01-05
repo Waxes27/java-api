@@ -44,6 +44,20 @@ class _DeatailsPageState extends State<DeatailsPage> {
               ),
               SizedBox(height: 5),
               Text(
+                'Campus: ${ticket.getCampus()}',
+                style: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 15
+                )
+              ),
+               Text(
+                'Floor: ${ticket.getFloor()}',
+                style: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 15
+                )
+              ),
+              Text(
                 'Category: ${ticket.getCategory()}',
                 style: TextStyle(
                   color: Colors.grey[500],
@@ -134,8 +148,15 @@ class _DeatailsPageState extends State<DeatailsPage> {
             endIndent: 20,
             color: widget.dynamicColor(widget.ticket),
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 10),
         buttonSection(),
+         Divider(
+            height: 20,
+            thickness: 5,
+            indent: 20,
+            endIndent: 20,
+            color: widget.dynamicColor(widget.ticket)
+        ),
         SizedBox(height: 52),
         TextField(
           minLines: 10,
