@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'pages/details_page.dart';
 
-final ip = "102.221.36.216";
+final ip = "waxes27.com";
 final uri = "http://$ip:4444";
 void main() => runApp(ConsoleApp());
 
@@ -35,7 +35,6 @@ class _HomePageState extends State<_HomePage> {
     return Colors.lightGreenAccent[400];
   }
 
-
   IconData _iconData(ticket) {
     if (ticket.getCategory() == "HARDWARE") {
       return Icons.mouse;
@@ -49,7 +48,6 @@ class _HomePageState extends State<_HomePage> {
     }
     return Icons.not_listed_location_rounded;
   }
-
 
   Icon _dynamicIcon(ticket) {
     return Icon(_iconData(ticket), color: _color(ticket));
@@ -131,7 +129,6 @@ class _HomePageState extends State<_HomePage> {
         ));
   }
 
-
   List<DataRow> _buildrows(List tickets) {
     // tickets = data.getTickets();
     print("THESE ARE THE TICKETS: $tickets");
@@ -154,10 +151,7 @@ class _HomePageState extends State<_HomePage> {
                     },
                   ),
                 ),
-                onPressed: () => {
-                  _goToTicketsDetails(ticket)
-                  
-                },
+                onPressed: () => {_goToTicketsDetails(ticket)},
                 child: Text(ticket.getRefID().toString()),
               )),
               DataCell(Text(ticket.getUsername())),
@@ -225,20 +219,17 @@ class _HomePageState extends State<_HomePage> {
     return _data;
   }
 
-
   void editTicket(id, status) async {
     // TODO: Need to add logic that notifies user if ticket update has failed
     final response =
         await http.post(Uri.parse("$uri/ticket/update/$id/$status"));
   }
 
-
   @override
   void initState() {
     super.initState();
     data = fetchTickets();
   }
-
 
   void _goToTicketsDetails(ticketModel ticket) {
     Navigator.of(context)
@@ -258,22 +249,19 @@ class _HomePageState extends State<_HomePage> {
           title: Center(child: Text("C O N S O L E")),
         ),
         body: FutureBuilder(
-          future: data,
-          initialData: [],
-          builder: (context, snapshot){
-          if (snapshot.hasError) {
-          return const Center(child: Text('An Error Occurred, Please contact the head admin'));
-          }
-          else if (snapshot.hasData) {
-         
-          return _dataTable(snapshot.data);
-          }
-          else {
-	
-        return Text('State: ${snapshot.connectionState}');
-	
-      }
-          }
-    ));
+            future: data,
+            initialData: [],
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                print(snapshot.error);
+                return const Center(
+                    child: Text(
+                        'An Error Occurred, Please contact the head admin'));
+              } else if (snapshot.hasData) {
+                return _dataTable(snapshot.data);
+              } else {
+                return Text('State: ${snapshot.connectionState}');
+              }
+            }));
   }
 }

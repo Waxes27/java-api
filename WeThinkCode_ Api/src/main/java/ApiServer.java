@@ -18,7 +18,7 @@ public class ApiServer {
         int port = 4444;
         Javalin server = Javalin.create(
             config -> {
-                config.enforceSsl = true; 
+                config.enforceSsl = false; 
                 config.enableCorsForAllOrigins();
     }
     
