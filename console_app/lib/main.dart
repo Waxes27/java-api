@@ -130,9 +130,7 @@ class _HomePageState extends State<_HomePage> {
   }
 
   List<DataRow> _buildrows(List tickets) {
-    // tickets = data.getTickets();
     print("THESE ARE THE TICKETS: $tickets");
-    // final ticketHandler handler = ticketHandler();
     return tickets
         .map((ticket) => DataRow(cells: [
               DataCell(_dynamicIcon(ticket)),

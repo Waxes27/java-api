@@ -7,34 +7,60 @@ import io.javalin.http.Context;
 import java.util.HashMap;
 import java.util.List;
 
+
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 
 
 public class ApiServer {
 
-    public static void main(String[] args) {
-        int port = 4444;
-        Javalin server = Javalin.create(
-            config -> {
-                config.enforceSsl = false; 
-                config.enableCorsForAllOrigins();
+    private static SslContextFactory getSslContextFactory() {
+        SslContextFactory sslContextFactory = new SslContextFactory.Server();
+        sslContextFactory.setKeyStorePath(ApiServer.class.getResource("/keystore.jks").toExternalForm());
+        sslContextFactory.setKeyStorePassword("password");
+        return sslContextFactory;
     }
+
+    public static void main(String[] args) throws Exception {
+        // SslContextFactory ssl = new SslContextFactory();
+        SslContextFactory.Server ssl = new SslContextFactory.Server();
+        ssl.start(); 
+        
+        int port = 4444;
+    //     Javalin server = Javalin.create(
+    //         config -> {
+    //             config.enforceSsl = false; 
+    //             config.enableCorsForAllOrigins();
+    // }
     
-    ).start(port);
+    // ).start(port);
+
+    Javalin javalinSserver = Javalin.create(config -> {
+        config.server(() -> {
+            config.enableCorsForAllOrigins();
+            Server server = new Server();
+            ServerConnector sslConnector = new ServerConnector(server, getSslContextFactory());
+            sslConnector.setPort(4444);
+            ServerConnector connector = new ServerConnector(server);
+            connector.setPort(80);
+            server.setConnectors(new Connector[]{sslConnector, connector});
+            return server;
+        });
+    }).start();
 
     
     
-    server.post("/tickets", ApiServer::addTicket);
-    server.post("/tickets/reset/{id}", ApiServer::resetCounter);
-    server.post("/tickets/drop/{id}", ApiServer::drop);
-    server.post("/ticket/update/{id}/{status}", ApiServer::update);
-    server.get("/tickets", ApiServer::getTickets);
-    server.get("/tickets/{user}", ApiServer::getUserTickets);
-    server.post("/ticket", ApiServer::getTicket);
-    server.post("/ticket/update/assigned/{staff}", ApiServer::assignStaffToTicket);
+    javalinSserver.post("/tickets", ApiServer::addTicket);
+    javalinSserver.post("/tickets/reset/{id}", ApiServer::resetCounter);
+    javalinSserver.post("/tickets/drop/{id}", ApiServer::drop);
+    javalinSserver.post("/ticket/update/{id}/{status}", ApiServer::update);
+    javalinSserver.get("/tickets", ApiServer::getTickets);
+    javalinSserver.get("/tickets/{user}", ApiServer::getUserTickets);
+    javalinSserver.post("/ticket", ApiServer::getTicket);
+    javalinSserver.post("/ticket/update/assigned/{staff}", ApiServer::assignStaffToTicket);
 }
 
 private static void resetCounter(Context context) throws SQLException {
@@ -101,3 +127,4 @@ private static void update(Context context) throws SQLException  {
 
 
 
+}
