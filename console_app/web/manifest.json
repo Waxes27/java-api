@@ -1,7 +1,7 @@
 {
-    "name": "app_tut",
-    "short_name": "app_tut",
-    "start_url": ".",
+    "name": "WeThinkCode_",
+    "short_name": "WeThinkCode_",
+    "start_url": "http://waxes27.com/",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
@@ -10,12 +10,12 @@
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "icons/Icon-192.png",
+            "src": "Icon-192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "icons/Icon-512.png",
+            "src": "Icon-512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
