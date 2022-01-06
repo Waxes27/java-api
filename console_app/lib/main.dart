@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'pages/details_page.dart';
 
 final ip = "waxes27.com";
-final uri = "http://$ip:4444";
+final uri = "https://$ip:4444";
 void main() => runApp(ConsoleApp());
 
 class ConsoleApp extends StatelessWidget {
