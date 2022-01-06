@@ -1,7 +1,7 @@
 {
     "name": "WeThinkCode_",
     "short_name": "WeThinkCode_",
-    "start_url": "http://waxes27.com/",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
