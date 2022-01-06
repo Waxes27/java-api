@@ -19,7 +19,7 @@ public class ApiServer {
 
     private static SslContextFactory getSslContextFactory() {
         SslContextFactory sslContextFactory = new SslContextFactory.Server();
-        sslContextFactory.setKeyStorePath(ApiServer.class.getResource("/keystore.jks").toExternalForm());
+        sslContextFactory.setKeyStorePath(ApiServer.class.getResource("/client.ks").toExternalForm());
         sslContextFactory.setKeyStorePassword("password");
         return sslContextFactory;
     }
