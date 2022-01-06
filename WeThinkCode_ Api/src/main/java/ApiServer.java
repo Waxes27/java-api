@@ -7,6 +7,7 @@ import io.javalin.http.Context;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 
@@ -23,6 +24,8 @@ public class ApiServer {
     }
     
     ).start(port);
+
+    
     
     server.post("/tickets", ApiServer::addTicket);
     server.post("/tickets/reset/{id}", ApiServer::resetCounter);
@@ -98,7 +101,3 @@ private static void update(Context context) throws SQLException  {
 
 
 
-
-
-
-}
