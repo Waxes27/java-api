@@ -45,7 +45,7 @@ public class ApiServer {
             // ServerConnector sslConnector = new ServerConnector(server, getSslContextFactory());
             // sslConnector.setPort(4444);
             ServerConnector connector = new ServerConnector(server);
-            connector.setPort(80);
+            connector.setPort(4444);
             server.setConnectors(new Connector[]{connector});
             return server;
         });
