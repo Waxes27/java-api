@@ -17,12 +17,12 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 public class ApiServer {
 
-    private static SslContextFactory getSslContextFactory() {
-        SslContextFactory sslContextFactory = new SslContextFactory.Server();
-        sslContextFactory.setKeyStorePath(ApiServer.class.getResource("/client.ks").toExternalForm());
-        sslContextFactory.setKeyStorePassword("password");
-        return sslContextFactory;
-    }
+    // private static SslContextFactory getSslContextFactory() {
+    //     SslContextFactory sslContextFactory = new SslContextFactory.Server();
+    //     sslContextFactory.setKeyStorePath(ApiServer.class.getResource("/client.ks").toExternalForm());
+    //     sslContextFactory.setKeyStorePassword("password");
+    //     return sslContextFactory;
+    // }
 
     public static void main(String[] args) throws Exception {
         // SslContextFactory ssl = new SslContextFactory();
@@ -42,11 +42,11 @@ public class ApiServer {
         config.server(() -> {
             config.enableCorsForAllOrigins();
             Server server = new Server();
-            ServerConnector sslConnector = new ServerConnector(server, getSslContextFactory());
-            sslConnector.setPort(4444);
+            // ServerConnector sslConnector = new ServerConnector(server, getSslContextFactory());
+            // sslConnector.setPort(4444);
             // ServerConnector connector = new ServerConnector(server);
             // connector.setPort(80);
-            server.setConnectors(new Connector[]{sslConnector});
+            // server.setConnectors(new Connector[]{sslConnector});
             return server;
         });
     }).start();
