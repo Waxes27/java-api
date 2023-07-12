@@ -8,14 +8,15 @@ var now = DateTime.now();
 final DateFormat formatter = DateFormat('yyyy-MM-dd HH:mm');
 final String formatted = formatter.format(now);
 
-String ip = "102.221.36.216";
-// String ip = "localhost";
+// String ip = "102.221.36.216";
+String ip = "localhost";
 
 Future createIssue(username, userIssue, userCampus, userFloor, category) async {
   print(now); // 2016-01-25
 
   Response data = await http.post(
-    Uri.parse('https://$ip:4444/tickets'),
+    Uri.parse('http://$ip:4444/tickets'),
+    headers: {"Content-Type": "application/json"},
     body: jsonEncode(<String, String>{
       "author": username,
       "issue": userIssue.toString(),
@@ -26,7 +27,7 @@ Future createIssue(username, userIssue, userCampus, userFloor, category) async {
           .replaceAll("nd", "")
           .replaceAll("rd", "")
           .replaceAll("st", ""),
-      "category": category,
+      "category": category.toString().toUpperCase(),
       "date": formatted,
     }),
   );
@@ -39,7 +40,7 @@ Future createIssue(username, userIssue, userCampus, userFloor, category) async {
 
 Future getUserTickets(String username) async {
   Response data =
-      await http.get(Uri.parse('https://$ip:4444/tickets/$username'));
+      await http.get(Uri.parse('http://$ip:4444/tickets/$username'));
   // print(data.body);
   List listOfDartJson = [];
 

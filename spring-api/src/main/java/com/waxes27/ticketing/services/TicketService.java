@@ -38,4 +38,8 @@ public class TicketService {
         ticket.setCompleted(status);
         ticketRepository.save(ticket);
     }
+
+    public List<Ticket> getTicketByUsername(String username) {
+        return ticketRepository.findByUsername(username);
+    }
 }

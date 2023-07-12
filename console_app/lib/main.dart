@@ -5,8 +5,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'pages/details_page.dart';
 
-final ip = "waxes27.com";
-final uri = "https://$ip:4444";
+// final ip = "waxes27.com";
+final ip = "localhost";
+final uri = "http://$ip:4444";
 void main() => runApp(ConsoleApp());
 
 class ConsoleApp extends StatelessWidget {
@@ -220,7 +221,7 @@ class _HomePageState extends State<_HomePage> {
   void editTicket(id, status) async {
     // TODO: Need to add logic that notifies user if ticket update has failed
     final response =
-        await http.post(Uri.parse("$uri/ticket/update/$id/$status"));
+        await http.post(Uri.parse("$uri/tickets/update/$id/$status"));
   }
 
   @override

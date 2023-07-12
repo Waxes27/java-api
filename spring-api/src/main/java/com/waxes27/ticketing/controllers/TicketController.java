@@ -9,10 +9,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/tickets")
-@CrossOrigin
+@CrossOrigin("http://localhost:41549")
 @AllArgsConstructor
 public class TicketController {
     private final TicketService service;
@@ -44,5 +45,10 @@ public class TicketController {
     @DeleteMapping
     public void deleteTicket(){
 
+    }
+
+    @GetMapping("{username}")
+    public List<Ticket> getTicketsByUserName(@PathVariable("username") String username){
+        return service.getTicketByUsername(username);
     }
 }
