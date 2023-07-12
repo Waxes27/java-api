@@ -1,9 +1,13 @@
 package com.waxes27.ticketing.models;
 
 import com.waxes27.ticketing.enums.Category;
+import com.waxes27.ticketing.enums.Status;
 import lombok.*;
 
 import javax.persistence.*;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @NoArgsConstructor
@@ -53,5 +57,15 @@ public class Ticket {
         sb.append(", 'category':'").append(category).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    public Map<String, Object> toMap() throws IllegalAccessException {
+        Map<String, Object> map = new HashMap();
+        for (Field i: this.getClass().getDeclaredFields()){
+            System.out.println(i);
+            i.setAccessible(true);
+            map.put(i.getName(),i.get(this));
+        }
+        return map;
     }
 }
